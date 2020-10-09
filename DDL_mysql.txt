@@ -1,0 +1,267 @@
+USE hims_oltp_db;
+
+CREATE TABLE billing (
+    b_id         BIGINT NOT NULL primary key AUTO_INCREMENT,
+    amount       DECIMAL(10, 2) NOT NULL,
+    treat_id     BIGINT NOT NULL,
+    due_date     DATETIME NOT NULL,
+    tbl_last_dt  DATETIME(2) NOT NULL
+);
+
+CREATE TABLE doctor (
+    doctor_id       INT NOT NULL primary key AUTO_INCREMENT,
+    first_name      VARCHAR(30) NOT NULL,
+    last_name       VARCHAR(30) NOT NULL,
+    state           VARCHAR(2) NOT NULL,
+    city            VARCHAR(30) NOT NULL,
+    street_address  VARCHAR(120) NOT NULL,
+    zip_code        INT NOT NULL,
+    phone           BIGINT NOT NULL,
+    e_mail          VARCHAR(30) NOT NULL,
+    hiredate        DATETIME NOT NULL,
+    hospital_id     SMALLINT NOT NULL,
+    tbl_last_dt     DATETIME(2) NOT NULL
+);
+
+CREATE TABLE hospital (
+    hospital_id     SMALLINT NOT NULL primary key AUTO_INCREMENT,
+    hospital_name   VARCHAR(30) NOT NULL,
+    state           VARCHAR(2) NOT NULL,
+    city            VARCHAR(30) NOT NULL,
+    street_address  VARCHAR(120) NOT NULL,
+    zip_code        INT NOT NULL,
+    phone           BIGINT NOT NULL,
+    e_mail          VARCHAR(30) NOT NULL,
+    tbl_last_dt     DATETIME(2) NOT NULL
+);
+
+CREATE TABLE icd_table (
+    icd_code      VARCHAR(30) NOT NULL,
+    description   VARCHAR(300) NOT NULL,
+    tbl_last_dt   DATETIME(2) NOT NULL
+);
+
+ALTER TABLE icd_table ADD CONSTRAINT icd_table_pk PRIMARY KEY ( icd_code );
+
+CREATE TABLE in_patient (
+    p_id         INT NOT NULL primary key AUTO_INCREMENT,
+    start_time   DATETIME NOT NULL,
+    end_time     DATETIME,
+    tbl_last_dt  DATETIME(6) NOT NULL,
+    room_id      BIGINT NOT NULL
+);
+
+
+CREATE TABLE insurance_provider (
+    ins_p_id           SMALLINT NOT NULL primary key AUTO_INCREMENT,
+    ins_provider_name  VARCHAR(30) NOT NULL,
+    state              VARCHAR(2) NOT NULL,
+    city               VARCHAR(30) NOT NULL,
+    street_address     VARCHAR(120) NOT NULL,
+    zip_code           INT NOT NULL,
+    phone              BIGINT NOT NULL,
+    e_mail             VARCHAR(30) NOT NULL,
+    ap_id              INT NOT NULL,
+    tbl_last_dt        DATETIME(2) NOT NULL
+);
+
+CREATE TABLE lab (
+    lab_id          SMALLINT NOT NULL primary key AUTO_INCREMENT,
+    lab_name        VARCHAR(30) NOT NULL,
+    state           VARCHAR(2) NOT NULL,
+    city            VARCHAR(30) NOT NULL,
+    street_address  VARCHAR(120) NOT NULL,
+    zip_code        INT NOT NULL,
+    phone           BIGINT NOT NULL,
+    e_mail          VARCHAR(30) NOT NULL,
+    tbl_last_dt     DATETIME(2) NOT NULL
+);
+
+
+CREATE TABLE lab_result (
+    test_id           BIGINT NOT NULL primary key AUTO_INCREMENT,
+    test_description  VARCHAR(120) NOT NULL,
+    test_result       VARCHAR(30) NOT NULL,
+    lab_id            SMALLINT NOT NULL,
+    treat_id          BIGINT NOT NULL,
+    tbl_last_dt       DATETIME(2) NOT NULL
+);
+
+
+CREATE TABLE non_medical_staff (
+    staff_id        INT NOT NULL primary key AUTO_INCREMENT,
+    first_name      VARCHAR(30) NOT NULL,
+    last_name       VARCHAR(30) NOT NULL,
+    state           VARCHAR(2) NOT NULL,
+    city            VARCHAR(30) NOT NULL,
+    street_address  VARCHAR(120) NOT NULL,
+    zip_code        INT NOT NULL,
+    phone           BIGINT NOT NULL,
+    e_mail          VARCHAR(30) NOT NULL,
+    hiredate        DATETIME NOT NULL,
+    type            VARCHAR(30) NOT NULL,
+    hospital_id     SMALLINT NOT NULL,
+    tbl_last_dt     DATETIME(2) NOT NULL
+);
+
+
+CREATE TABLE nurs_hm_patient (
+    p_id         INT NOT NULL primary key AUTO_INCREMENT,
+    start_time   DATETIME NOT NULL,
+    end_time     DATETIME,
+    tbl_last_dt  DATETIME(2) NOT NULL
+);
+
+
+CREATE TABLE nurse (
+    nurse_id        INT NOT NULL primary key AUTO_INCREMENT,
+    first_name      VARCHAR(30) NOT NULL,
+    last_name       VARCHAR(30) NOT NULL,
+    state           VARCHAR(2) NOT NULL,
+    city            VARCHAR(30) NOT NULL,
+    street_address  VARCHAR(120) NOT NULL,
+    zip_code        INT NOT NULL,
+    phone           BIGINT NOT NULL,
+    e_mail          VARCHAR(30) NOT NULL,
+    hiredate        DATETIME NOT NULL,
+    hospital_id     SMALLINT NOT NULL,
+    tbl_last_dt     DATETIME(2) NOT NULL
+);
+
+
+CREATE TABLE out_patient (
+    p_id          INT NOT NULL primary key AUTO_INCREMENT,
+    treated_time  DATETIME NOT NULL,
+    tbl_last_dt   DATETIME(2) NOT NULL
+);
+
+
+CREATE TABLE pat_appointment (
+    ap_id        INT NOT NULL primary key AUTO_INCREMENT,
+    p_id         INT NOT NULL,
+    doctor_id    INT NOT NULL,
+    ap_time      DATETIME NOT NULL,
+    tbl_last_dt  DATETIME(2) NOT NULL
+);
+
+
+CREATE TABLE patient (
+    p_id                 INT NOT NULL primary key AUTO_INCREMENT,
+    first_name           VARCHAR(30) NOT NULL,
+    last_name            VARCHAR(30) NOT NULL,
+    state                VARCHAR(2) NOT NULL,
+    city                 VARCHAR(30) NOT NULL,
+    street_address       VARCHAR(120) NOT NULL,
+    zip_code             INT NOT NULL,
+    phone                BIGINT NOT NULL,
+    e_mail               VARCHAR(30) NOT NULL,
+    member_insurance_id  VARCHAR(30) NOT NULL,
+    register_date        DATETIME NOT NULL,
+    tbl_last_dt          DATETIME(2) NOT NULL COMMENT 'update timestamp'
+);
+
+/* Moved to CREATE TABLE
+COMMENT ON COLUMN patient.tbl_last_dt IS
+    'update timestamp'; */
+
+
+CREATE TABLE receipt (
+    rcpt_id       BIGINT NOT NULL primary key AUTO_INCREMENT,
+    payment_date   DATETIME NOT NULL,
+    payment_amout  DECIMAL(8, 2) NOT NULL,
+    b_id           BIGINT NOT NULL,
+    tbl_last_dt    DATETIME(2) NOT NULL
+);
+
+
+CREATE TABLE room (
+    room_id      BIGINT NOT NULL primary key AUTO_INCREMENT,
+    room_name    VARCHAR(30) NOT NULL,
+    description  VARCHAR(100),
+    tbl_last_dt  DATETIME(2) NOT NULL,
+    hospital_id  SMALLINT NOT NULL
+);
+
+
+CREATE TABLE treatment (
+    treat_id     BIGINT NOT NULL primary key AUTO_INCREMENT,
+    description  VARCHAR(300) NOT NULL,
+    ap_id        INT NOT NULL,
+    icd_code     VARCHAR(30) NOT NULL,
+    treat_type   VARCHAR(30) NOT NULL COMMENT 'Medical, Hospitalization, Examination',
+    tbl_last_dt  DATETIME(2) NOT NULL
+);
+
+/* Moved to CREATE TABLE
+COMMENT ON COLUMN treatment.treat_type IS
+    'Medical, Hospitalization, Examination'; */
+
+
+ALTER TABLE billing
+    ADD CONSTRAINT billing_treatment_fk FOREIGN KEY ( treat_id )
+        REFERENCES treatment ( treat_id );
+
+ALTER TABLE doctor
+    ADD CONSTRAINT doctor_hospital_fk FOREIGN KEY ( hospital_id )
+        REFERENCES hospital ( hospital_id );
+
+ALTER TABLE in_patient
+    ADD CONSTRAINT in_patient_patient_fk FOREIGN KEY ( p_id )
+        REFERENCES patient ( p_id );
+
+ALTER TABLE in_patient
+    ADD CONSTRAINT in_patient_room_fk FOREIGN KEY ( room_id )
+        REFERENCES room ( room_id );
+
+--  ERROR: FK name length exceeds maximum allowed length(30)
+ALTER TABLE insurance_provider
+    ADD CONSTRAINT insurance_provider_pat_appointment_fk FOREIGN KEY ( ap_id )
+        REFERENCES pat_appointment ( ap_id );
+
+ALTER TABLE lab_result
+    ADD CONSTRAINT lab_result_lab_fk FOREIGN KEY ( lab_id )
+        REFERENCES lab ( lab_id );
+
+ALTER TABLE lab_result
+    ADD CONSTRAINT lab_result_treatment_fk FOREIGN KEY ( treat_id )
+        REFERENCES treatment ( treat_id );
+
+ALTER TABLE non_medical_staff
+    ADD CONSTRAINT non_medical_staff_hospital_fk FOREIGN KEY ( hospital_id )
+        REFERENCES hospital ( hospital_id );
+
+ALTER TABLE nurs_hm_patient
+    ADD CONSTRAINT nurs_hm_patient_patient_fk FOREIGN KEY ( p_id )
+        REFERENCES patient ( p_id );
+
+ALTER TABLE nurse
+    ADD CONSTRAINT nurse_hospital_fk FOREIGN KEY ( hospital_id )
+        REFERENCES hospital ( hospital_id );
+
+ALTER TABLE out_patient
+    ADD CONSTRAINT out_patient_patient_fk FOREIGN KEY ( p_id )
+        REFERENCES patient ( p_id );
+
+ALTER TABLE pat_appointment
+    ADD CONSTRAINT pat_appointment_doctor_fk FOREIGN KEY ( doctor_id )
+        REFERENCES doctor ( doctor_id );
+
+ALTER TABLE pat_appointment
+    ADD CONSTRAINT pat_appointment_patient_fk FOREIGN KEY ( p_id )
+        REFERENCES patient ( p_id );
+
+ALTER TABLE receipt
+    ADD CONSTRAINT receipt_billing_fk FOREIGN KEY ( b_id )
+        REFERENCES billing ( b_id );
+
+ALTER TABLE room
+    ADD CONSTRAINT room_hospital_fk FOREIGN KEY ( hospital_id )
+        REFERENCES hospital ( hospital_id );
+
+ALTER TABLE treatment
+    ADD CONSTRAINT treatment_icd_table_fk FOREIGN KEY ( icd_code )
+        REFERENCES icd_table ( icd_code );
+
+ALTER TABLE treatment
+    ADD CONSTRAINT treatment_pat_appointment_fk FOREIGN KEY ( ap_id )
+        REFERENCES pat_appointment ( ap_id );
