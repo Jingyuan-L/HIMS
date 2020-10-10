@@ -21,6 +21,6 @@ from patient import urls as patient_url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include(account_urls)),
-    path('patient/',include(patient_url))
+    path('', include(account_urls)),
+    path('patient/', include(patient_url))
 ]

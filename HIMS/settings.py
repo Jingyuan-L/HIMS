@@ -82,11 +82,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'hims_oltp_db',
         'USER': 'root',
-        'PASSWORD': 'hurui19951220',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
         'PORT': '3306',
-        'OPTIONS':{
-            'init_command':"SET sql_mode='STRICT_TRANS_TABLES'"
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
     }
 }
