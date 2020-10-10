@@ -914,16 +914,16 @@
     <table id="296" parent="2" name="django_session"/>
     <table id="297" parent="2" name="doctor"/>
     <table id="298" parent="2" name="hospital"/>
-    <table id="299" parent="2" name="icd_table"/>
-    <table id="300" parent="2" name="in_patient"/>
-    <table id="301" parent="2" name="insurance_provider"/>
+    <table id="299" parent="2" name="icdtable"/>
+    <table id="300" parent="2" name="inpatient"/>
+    <table id="301" parent="2" name="insuranceprovider"/>
     <table id="302" parent="2" name="lab"/>
-    <table id="303" parent="2" name="lab_result"/>
-    <table id="304" parent="2" name="non_medical_staff"/>
-    <table id="305" parent="2" name="nurs_hm_patient"/>
-    <table id="306" parent="2" name="nurse"/>
-    <table id="307" parent="2" name="out_patient"/>
-    <table id="308" parent="2" name="pat_appointment"/>
+    <table id="303" parent="2" name="labresult"/>
+    <table id="304" parent="2" name="nonmedicalstaff"/>
+    <table id="305" parent="2" name="nurse"/>
+    <table id="306" parent="2" name="nurshmpatient"/>
+    <table id="307" parent="2" name="outpatient"/>
+    <table id="308" parent="2" name="patappointment"/>
     <table id="309" parent="2" name="patient"/>
     <table id="310" parent="2" name="receipt"/>
     <table id="311" parent="2" name="room"/>
@@ -1241,25 +1241,25 @@ permission_id</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="369" parent="292" name="treat_id">
+    <column id="369" parent="292" name="due_date">
       <Position>3</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="370" parent="292" name="tbl_last_dt">
+      <Position>4</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="371" parent="292" name="treat_id">
+      <Position>5</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="370" parent="292" name="due_date">
-      <Position>4</Position>
-      <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="371" parent="292" name="tbl_last_dt">
-      <Position>5</Position>
-      <DataType>datetime(2)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="372" parent="292" name="billing_treatment_fk">
+    <index id="372" parent="292" name="Billing_treat_id_558297d1_fk_Treatment_treat_id">
       <ColNames>treat_id</ColNames>
       <Type>btree</Type>
     </index>
@@ -1268,7 +1268,7 @@ permission_id</ColNames>
       <ColNames>b_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="374" parent="292" name="billing_treatment_fk">
+    <foreign-key id="374" parent="292" name="Billing_treat_id_558297d1_fk_Treatment_treat_id">
       <ColNames>treat_id</ColNames>
       <RefTableName>treatment</RefTableName>
       <RefColNames>treat_id</RefColNames>
@@ -1492,23 +1492,23 @@ model</ColNames>
     </column>
     <column id="413" parent="297" name="hiredate">
       <Position>10</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="414" parent="297" name="hospital_id">
+    <column id="414" parent="297" name="tbl_last_dt">
       <Position>11</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="415" parent="297" name="hospital_id">
+      <Position>12</Position>
       <DataType>smallint|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="415" parent="297" name="tbl_last_dt">
-      <Position>12</Position>
-      <DataType>datetime(2)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="416" parent="297" name="doctor_hospital_fk">
+    <index id="416" parent="297" name="Doctor_hospital_id_723f0f96_fk_Hospital_hospital_id">
       <ColNames>hospital_id</ColNames>
       <Type>btree</Type>
     </index>
@@ -1517,7 +1517,7 @@ model</ColNames>
       <ColNames>doctor_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="418" parent="297" name="doctor_hospital_fk">
+    <foreign-key id="418" parent="297" name="Doctor_hospital_id_723f0f96_fk_Hospital_hospital_id">
       <ColNames>hospital_id</ColNames>
       <RefTableName>hospital</RefTableName>
       <RefColNames>hospital_id</RefColNames>
@@ -1573,7 +1573,7 @@ model</ColNames>
     </column>
     <column id="427" parent="298" name="tbl_last_dt">
       <Position>9</Position>
-      <DataType>datetime(2)|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1596,7 +1596,7 @@ model</ColNames>
     </column>
     <column id="431" parent="299" name="tbl_last_dt">
       <Position>3</Position>
-      <DataType>datetime(2)|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1609,18 +1609,17 @@ model</ColNames>
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="434" parent="300" name="start_time">
       <Position>2</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="435" parent="300" name="end_time">
       <Position>3</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="436" parent="300" name="tbl_last_dt">
@@ -1635,7 +1634,7 @@ model</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="438" parent="300" name="in_patient_room_fk">
+    <index id="438" parent="300" name="InPatient_room_id_ee1191cf_fk_Room_room_id">
       <ColNames>room_id</ColNames>
       <Type>btree</Type>
     </index>
@@ -1644,12 +1643,12 @@ model</ColNames>
       <ColNames>p_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="440" parent="300" name="in_patient_patient_fk">
+    <foreign-key id="440" parent="300" name="InPatient_p_id_a3d2b9b3_fk_Patient_p_id">
       <ColNames>p_id</ColNames>
       <RefTableName>patient</RefTableName>
       <RefColNames>p_id</RefColNames>
     </foreign-key>
-    <foreign-key id="441" parent="300" name="in_patient_room_fk">
+    <foreign-key id="441" parent="300" name="InPatient_room_id_ee1191cf_fk_Room_room_id">
       <ColNames>room_id</ColNames>
       <RefTableName>room</RefTableName>
       <RefColNames>room_id</RefColNames>
@@ -1703,19 +1702,19 @@ model</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="450" parent="301" name="ap_id">
+    <column id="450" parent="301" name="tbl_last_dt">
       <Position>9</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="451" parent="301" name="ap_id">
+      <Position>10</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="451" parent="301" name="tbl_last_dt">
-      <Position>10</Position>
-      <DataType>datetime(2)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="452" parent="301" name="insurance_provider_pat_appointment_fk">
+    <index id="452" parent="301" name="InsuranceProvider_ap_id_2e44bd4d_fk_PatAppointment_ap_id">
       <ColNames>ap_id</ColNames>
       <Type>btree</Type>
     </index>
@@ -1724,9 +1723,9 @@ model</ColNames>
       <ColNames>ins_p_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="454" parent="301" name="insurance_provider_pat_appointment_fk">
+    <foreign-key id="454" parent="301" name="InsuranceProvider_ap_id_2e44bd4d_fk_PatAppointment_ap_id">
       <ColNames>ap_id</ColNames>
-      <RefTableName>pat_appointment</RefTableName>
+      <RefTableName>patappointment</RefTableName>
       <RefColNames>ap_id</RefColNames>
     </foreign-key>
     <column id="455" parent="302" name="lab_id">
@@ -1780,7 +1779,7 @@ model</ColNames>
     </column>
     <column id="463" parent="302" name="tbl_last_dt">
       <Position>9</Position>
-      <DataType>datetime(2)|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1808,29 +1807,29 @@ model</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="468" parent="303" name="lab_id">
+    <column id="468" parent="303" name="tbl_last_dt">
       <Position>4</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="469" parent="303" name="lab_id">
+      <Position>5</Position>
       <DataType>smallint|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="469" parent="303" name="treat_id">
-      <Position>5</Position>
+    <column id="470" parent="303" name="treat_id">
+      <Position>6</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="470" parent="303" name="tbl_last_dt">
-      <Position>6</Position>
-      <DataType>datetime(2)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="471" parent="303" name="lab_result_lab_fk">
+    <index id="471" parent="303" name="LabResult_lab_id_bd9d52a2_fk_Lab_lab_id">
       <ColNames>lab_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="472" parent="303" name="lab_result_treatment_fk">
+    <index id="472" parent="303" name="LabResult_treat_id_294a2544_fk_Treatment_treat_id">
       <ColNames>treat_id</ColNames>
       <Type>btree</Type>
     </index>
@@ -1839,12 +1838,12 @@ model</ColNames>
       <ColNames>test_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="474" parent="303" name="lab_result_lab_fk">
+    <foreign-key id="474" parent="303" name="LabResult_lab_id_bd9d52a2_fk_Lab_lab_id">
       <ColNames>lab_id</ColNames>
       <RefTableName>lab</RefTableName>
       <RefColNames>lab_id</RefColNames>
     </foreign-key>
-    <foreign-key id="475" parent="303" name="lab_result_treatment_fk">
+    <foreign-key id="475" parent="303" name="LabResult_treat_id_294a2544_fk_Treatment_treat_id">
       <ColNames>treat_id</ColNames>
       <RefTableName>treatment</RefTableName>
       <RefColNames>treat_id</RefColNames>
@@ -1906,7 +1905,7 @@ model</ColNames>
     </column>
     <column id="485" parent="304" name="hiredate">
       <Position>10</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1916,19 +1915,19 @@ model</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="487" parent="304" name="hospital_id">
+    <column id="487" parent="304" name="tbl_last_dt">
       <Position>12</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="488" parent="304" name="hospital_id">
+      <Position>13</Position>
       <DataType>smallint|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="488" parent="304" name="tbl_last_dt">
-      <Position>13</Position>
-      <DataType>datetime(2)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="489" parent="304" name="non_medical_staff_hospital_fk">
+    <index id="489" parent="304" name="NonMedicalStaff_hospital_id_0b589059_fk_Hospital_hospital_id">
       <ColNames>hospital_id</ColNames>
       <Type>btree</Type>
     </index>
@@ -1937,148 +1936,146 @@ model</ColNames>
       <ColNames>staff_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="491" parent="304" name="non_medical_staff_hospital_fk">
+    <foreign-key id="491" parent="304" name="NonMedicalStaff_hospital_id_0b589059_fk_Hospital_hospital_id">
       <ColNames>hospital_id</ColNames>
       <RefTableName>hospital</RefTableName>
       <RefColNames>hospital_id</RefColNames>
     </foreign-key>
-    <column id="492" parent="305" name="p_id">
+    <column id="492" parent="305" name="nurse_id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="493" parent="305" name="start_time">
-      <Position>2</Position>
-      <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="494" parent="305" name="end_time">
-      <Position>3</Position>
-      <DataType>datetime|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="495" parent="305" name="tbl_last_dt">
-      <Position>4</Position>
-      <DataType>datetime(2)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="496" parent="305" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>p_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="497" parent="305" name="nurs_hm_patient_patient_fk">
-      <ColNames>p_id</ColNames>
-      <RefTableName>patient</RefTableName>
-      <RefColNames>p_id</RefColNames>
-    </foreign-key>
-    <column id="498" parent="306" name="nurse_id">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="499" parent="306" name="first_name">
+    <column id="493" parent="305" name="first_name">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="500" parent="306" name="last_name">
+    <column id="494" parent="305" name="last_name">
       <Position>3</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="501" parent="306" name="state">
+    <column id="495" parent="305" name="state">
       <Position>4</Position>
       <DataType>varchar(2)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="502" parent="306" name="city">
+    <column id="496" parent="305" name="city">
       <Position>5</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="503" parent="306" name="street_address">
+    <column id="497" parent="305" name="street_address">
       <Position>6</Position>
       <DataType>varchar(120)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="504" parent="306" name="zip_code">
+    <column id="498" parent="305" name="zip_code">
       <Position>7</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="505" parent="306" name="phone">
+    <column id="499" parent="305" name="phone">
       <Position>8</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="506" parent="306" name="e_mail">
+    <column id="500" parent="305" name="e_mail">
       <Position>9</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="507" parent="306" name="hiredate">
+    <column id="501" parent="305" name="hiredate">
       <Position>10</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="508" parent="306" name="hospital_id">
+    <column id="502" parent="305" name="tbl_last_dt">
       <Position>11</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="503" parent="305" name="hospital_id">
+      <Position>12</Position>
       <DataType>smallint|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="509" parent="306" name="tbl_last_dt">
-      <Position>12</Position>
-      <DataType>datetime(2)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="510" parent="306" name="nurse_hospital_fk">
+    <index id="504" parent="305" name="Nurse_hospital_id_c1b80148_fk_Hospital_hospital_id">
       <ColNames>hospital_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="511" parent="306" name="PRIMARY">
+    <key id="505" parent="305" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>nurse_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="512" parent="306" name="nurse_hospital_fk">
+    <foreign-key id="506" parent="305" name="Nurse_hospital_id_c1b80148_fk_Hospital_hospital_id">
       <ColNames>hospital_id</ColNames>
       <RefTableName>hospital</RefTableName>
       <RefColNames>hospital_id</RefColNames>
+    </foreign-key>
+    <column id="507" parent="306" name="p_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="508" parent="306" name="start_time">
+      <Position>2</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="509" parent="306" name="end_time">
+      <Position>3</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="510" parent="306" name="tbl_last_dt">
+      <Position>4</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="511" parent="306" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>p_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="512" parent="306" name="NursHmPatient_p_id_314525f8_fk_Patient_p_id">
+      <ColNames>p_id</ColNames>
+      <RefTableName>patient</RefTableName>
+      <RefColNames>p_id</RefColNames>
     </foreign-key>
     <column id="513" parent="307" name="p_id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="514" parent="307" name="treated_time">
       <Position>2</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="515" parent="307" name="tbl_last_dt">
       <Position>3</Position>
-      <DataType>datetime(2)|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -2087,7 +2084,7 @@ model</ColNames>
       <ColNames>p_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="517" parent="307" name="out_patient_patient_fk">
+    <foreign-key id="517" parent="307" name="OutPatient_p_id_05b3fc4c_fk_Patient_p_id">
       <ColNames>p_id</ColNames>
       <RefTableName>patient</RefTableName>
       <RefColNames>p_id</RefColNames>
@@ -2099,36 +2096,36 @@ model</ColNames>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="519" parent="308" name="p_id">
+    <column id="519" parent="308" name="ap_time">
       <Position>2</Position>
-      <DataType>int|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="520" parent="308" name="doctor_id">
+    <column id="520" parent="308" name="tbl_last_dt">
       <Position>3</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="521" parent="308" name="doctor_id">
+      <Position>4</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="521" parent="308" name="ap_time">
-      <Position>4</Position>
-      <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="522" parent="308" name="tbl_last_dt">
+    <column id="522" parent="308" name="p_id">
       <Position>5</Position>
-      <DataType>datetime(2)|0s</DataType>
+      <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="523" parent="308" name="pat_appointment_patient_fk">
-      <ColNames>p_id</ColNames>
+    <index id="523" parent="308" name="PatAppointment_doctor_id_d9013e9d_fk_Doctor_doctor_id">
+      <ColNames>doctor_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="524" parent="308" name="pat_appointment_doctor_fk">
-      <ColNames>doctor_id</ColNames>
+    <index id="524" parent="308" name="PatAppointment_p_id_14872d7a_fk_Patient_p_id">
+      <ColNames>p_id</ColNames>
       <Type>btree</Type>
     </index>
     <key id="525" parent="308" name="PRIMARY">
@@ -2136,15 +2133,15 @@ model</ColNames>
       <ColNames>ap_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="526" parent="308" name="pat_appointment_patient_fk">
-      <ColNames>p_id</ColNames>
-      <RefTableName>patient</RefTableName>
-      <RefColNames>p_id</RefColNames>
-    </foreign-key>
-    <foreign-key id="527" parent="308" name="pat_appointment_doctor_fk">
+    <foreign-key id="526" parent="308" name="PatAppointment_doctor_id_d9013e9d_fk_Doctor_doctor_id">
       <ColNames>doctor_id</ColNames>
       <RefTableName>doctor</RefTableName>
       <RefColNames>doctor_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="527" parent="308" name="PatAppointment_p_id_14872d7a_fk_Patient_p_id">
+      <ColNames>p_id</ColNames>
+      <RefTableName>patient</RefTableName>
+      <RefColNames>p_id</RefColNames>
     </foreign-key>
     <column id="528" parent="309" name="p_id">
       <Position>1</Position>
@@ -2156,223 +2153,227 @@ model</ColNames>
     <column id="529" parent="309" name="first_name">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="530" parent="309" name="last_name">
       <Position>3</Position>
       <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="531" parent="309" name="state">
       <Position>4</Position>
       <DataType>varchar(2)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="532" parent="309" name="city">
       <Position>5</Position>
       <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="533" parent="309" name="street_address">
       <Position>6</Position>
       <DataType>varchar(120)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="534" parent="309" name="zip_code">
       <Position>7</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="535" parent="309" name="phone">
       <Position>8</Position>
       <DataType>bigint|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="536" parent="309" name="e_mail">
       <Position>9</Position>
       <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="537" parent="309" name="member_insurance_id">
       <Position>10</Position>
       <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="538" parent="309" name="register_date">
       <Position>11</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="539" parent="309" name="tbl_last_dt">
       <Position>12</Position>
-      <Comment>update timestamp</Comment>
-      <DataType>datetime(2)|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="540" parent="309" name="PRIMARY">
+    <column id="540" parent="309" name="user">
+      <Position>13</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="541" parent="309" name="Patient_user_ea5d0584_fk_auth_user_id">
+      <ColNames>user</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="542" parent="309" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>p_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="541" parent="310" name="rcpt_id">
+    <foreign-key id="543" parent="309" name="Patient_user_ea5d0584_fk_auth_user_id">
+      <ColNames>user</ColNames>
+      <RefTableName>auth_user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="544" parent="310" name="rcpt_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="542" parent="310" name="payment_date">
+    <column id="545" parent="310" name="payment_date">
       <Position>2</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="543" parent="310" name="payment_amout">
+    <column id="546" parent="310" name="payment_amout">
       <Position>3</Position>
       <DataType>decimal(8,2 digit)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="544" parent="310" name="b_id">
+    <column id="547" parent="310" name="tbl_last_dt">
       <Position>4</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="548" parent="310" name="b_id">
+      <Position>5</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="545" parent="310" name="tbl_last_dt">
-      <Position>5</Position>
-      <DataType>datetime(2)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="546" parent="310" name="receipt_billing_fk">
+    <index id="549" parent="310" name="Receipt_b_id_4f6fa5f5_fk_Billing_b_id">
       <ColNames>b_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="547" parent="310" name="PRIMARY">
+    <key id="550" parent="310" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>rcpt_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="548" parent="310" name="receipt_billing_fk">
+    <foreign-key id="551" parent="310" name="Receipt_b_id_4f6fa5f5_fk_Billing_b_id">
       <ColNames>b_id</ColNames>
       <RefTableName>billing</RefTableName>
       <RefColNames>b_id</RefColNames>
     </foreign-key>
-    <column id="549" parent="311" name="room_id">
+    <column id="552" parent="311" name="room_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="550" parent="311" name="room_name">
+    <column id="553" parent="311" name="room_name">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="551" parent="311" name="description">
+    <column id="554" parent="311" name="description">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="552" parent="311" name="tbl_last_dt">
+    <column id="555" parent="311" name="tbl_last_dt">
       <Position>4</Position>
-      <DataType>datetime(2)|0s</DataType>
+      <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="553" parent="311" name="hospital_id">
+    <column id="556" parent="311" name="hospital_id">
       <Position>5</Position>
       <DataType>smallint|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="554" parent="311" name="room_hospital_fk">
+    <index id="557" parent="311" name="Room_hospital_id_004cc829_fk_Hospital_hospital_id">
       <ColNames>hospital_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="555" parent="311" name="PRIMARY">
+    <key id="558" parent="311" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>room_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="556" parent="311" name="room_hospital_fk">
+    <foreign-key id="559" parent="311" name="Room_hospital_id_004cc829_fk_Hospital_hospital_id">
       <ColNames>hospital_id</ColNames>
       <RefTableName>hospital</RefTableName>
       <RefColNames>hospital_id</RefColNames>
     </foreign-key>
-    <column id="557" parent="312" name="treat_id">
+    <column id="560" parent="312" name="treat_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="558" parent="312" name="description">
+    <column id="561" parent="312" name="description">
       <Position>2</Position>
       <DataType>varchar(300)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="559" parent="312" name="ap_id">
+    <column id="562" parent="312" name="treat_type">
       <Position>3</Position>
+      <DataType>varchar(30)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="563" parent="312" name="tbl_last_dt">
+      <Position>4</Position>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="564" parent="312" name="ap_id">
+      <Position>5</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="560" parent="312" name="icd_code">
-      <Position>4</Position>
-      <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="561" parent="312" name="treat_type">
-      <Position>5</Position>
-      <Comment>Medical, Hospitalization, Examination</Comment>
-      <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="562" parent="312" name="tbl_last_dt">
+    <column id="565" parent="312" name="icd_code">
       <Position>6</Position>
-      <DataType>datetime(2)|0s</DataType>
+      <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="563" parent="312" name="treatment_pat_appointment_fk">
+    <index id="566" parent="312" name="Treatment_ap_id_2f420d91_fk_PatAppointment_ap_id">
       <ColNames>ap_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="564" parent="312" name="treatment_icd_table_fk">
+    <index id="567" parent="312" name="Treatment_icd_code_d39c9f93_fk_IcdTable_icd_code">
       <ColNames>icd_code</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="565" parent="312" name="PRIMARY">
+    <key id="568" parent="312" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>treat_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="566" parent="312" name="treatment_pat_appointment_fk">
+    <foreign-key id="569" parent="312" name="Treatment_ap_id_2f420d91_fk_PatAppointment_ap_id">
       <ColNames>ap_id</ColNames>
-      <RefTableName>pat_appointment</RefTableName>
+      <RefTableName>patappointment</RefTableName>
       <RefColNames>ap_id</RefColNames>
     </foreign-key>
-    <foreign-key id="567" parent="312" name="treatment_icd_table_fk">
+    <foreign-key id="570" parent="312" name="Treatment_icd_code_d39c9f93_fk_IcdTable_icd_code">
       <ColNames>icd_code</ColNames>
-      <RefTableName>icd_table</RefTableName>
+      <RefTableName>icdtable</RefTableName>
       <RefColNames>icd_code</RefColNames>
     </foreign-key>
   </database-model>

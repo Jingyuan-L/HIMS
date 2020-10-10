@@ -188,7 +188,7 @@ class PatAppointment(models.Model):
 
 
 class Patient(models.Model):
-    user = models.ForeignKey(User, models.DO_NOTHING,db_column='user')
+    user = models.ForeignKey(User, models.DO_NOTHING, db_column='user')
     p_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=30,blank=True, null=True)
     last_name = models.CharField(max_length=30,blank=True, null=True)
