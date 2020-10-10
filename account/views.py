@@ -1,4 +1,5 @@
 from patient.models import Patient
+from patient import urls
 from .forms import RegisterForm
 
 from django.shortcuts import render,redirect
@@ -15,7 +16,7 @@ def homepage(request):
 
 def patient_login(request):
     if request.user.is_authenticated:
-        return redirect('homepage')
+        return redirect('dashboard', pk = pk)
     else:
         if request.method == 'POST':
             username_get = request.POST.get()
@@ -40,8 +41,8 @@ def register(requset):
                 if pwd1_get == pwd2_get:
                     new_user = User.objects.create_user(username=username_get, password=pwd1_get,email=email_get)
                     new_user.save()
-                    Patient.objects.create(e_mail=email_get)
-                    return redirect('patient_login')
+                    Patient.objects.create(user= new_user, e_mail=email_get)
+                    return redirect('homepage')
                 else:
                     message = 'different password'
             except:

@@ -6,7 +6,7 @@ class patientform(ModelForm):
     class Meta:
         model = Patient
         fields = '__all__'
-        exclude = ['p_id','register_date','tbl_last_dt']
+        exclude = ['p_id','register_date','tbl_last_dt','user']
 
         widgets = {
             'first_name' : forms.TextInput(attrs={
