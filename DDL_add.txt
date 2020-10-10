@@ -1,0 +1,13 @@
+ALTER TABLE patient MODIFY  register_date datetime not null default current_timestamp;
+ALTER TABLE patient MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
+
+ALTER TABLE patient MODIFY first_name VARCHAR(30) NULL;
+ALTER TABLE patient MODIFY last_name  VARCHAR(30) NULL;
+ALTER TABLE patient MODIFY state VARCHAR(2) NULL;
+ALTER TABLE patient MODIFY city  VARCHAR(30) NULL;
+ALTER TABLE patient MODIFY street_address VARCHAR(120) NULL;
+ALTER TABLE patient MODIFY zip_code INT NULL;
+ALTER TABLE patient MODIFY phone BIGINT NULL;
+ALTER TABLE patient MODIFY e_mail VARCHAR(30) NULL;
+ALTER TABLE patient MODIFY member_insurance_id VARCHAR(30) NULL;
+

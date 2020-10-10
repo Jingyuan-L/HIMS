@@ -82,12 +82,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'hims_oltp_db',
         'USER': 'root',
-        'PASSWORD': 'admin',
+        'PASSWORD': 'hurui19951220',
         'HOST': 'localhost',
         'PORT': '3306',
+        'OPTIONS':{
+            'init_command':"SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

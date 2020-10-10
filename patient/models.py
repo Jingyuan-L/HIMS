@@ -7,73 +7,6 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-
-class AuthGroup(models.Model):
-    name = models.CharField(unique=True, max_length=150)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group'
-
-
-class AuthGroupPermissions(models.Model):
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group_permissions'
-        unique_together = (('group', 'permission'),)
-
-
-class AuthPermission(models.Model):
-    name = models.CharField(max_length=255)
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
-    codename = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_permission'
-        unique_together = (('content_type', 'codename'),)
-
-
-class AuthUser(models.Model):
-    password = models.CharField(max_length=128)
-    last_login = models.DateTimeField(blank=True, null=True)
-    is_superuser = models.IntegerField()
-    username = models.CharField(unique=True, max_length=150)
-    first_name = models.CharField(max_length=150)
-    last_name = models.CharField(max_length=150)
-    email = models.CharField(max_length=254)
-    is_staff = models.IntegerField()
-    is_active = models.IntegerField()
-    date_joined = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user'
-
-
-class AuthUserGroups(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user_groups'
-        unique_together = (('user', 'group'),)
-
-
-class AuthUserUserPermissions(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user_user_permissions'
-        unique_together = (('user', 'permission'),)
-
-
 class Billing(models.Model):
     b_id = models.BigAutoField(primary_key=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
@@ -82,52 +15,7 @@ class Billing(models.Model):
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'billing'
-
-
-class DjangoAdminLog(models.Model):
-    action_time = models.DateTimeField()
-    object_id = models.TextField(blank=True, null=True)
-    object_repr = models.CharField(max_length=200)
-    action_flag = models.PositiveSmallIntegerField()
-    change_message = models.TextField()
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'django_admin_log'
-
-
-class DjangoContentType(models.Model):
-    app_label = models.CharField(max_length=100)
-    model = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'django_content_type'
-        unique_together = (('app_label', 'model'),)
-
-
-class DjangoMigrations(models.Model):
-    app = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
-    applied = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'django_migrations'
-
-
-class DjangoSession(models.Model):
-    session_key = models.CharField(primary_key=True, max_length=40)
-    session_data = models.TextField()
-    expire_date = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'django_session'
+        db_table = 'Billing'
 
 
 class Doctor(models.Model):
@@ -145,8 +33,9 @@ class Doctor(models.Model):
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'doctor'
+        db_table = 'Doctor'
+
+
 
 
 class Hospital(models.Model):
@@ -161,8 +50,8 @@ class Hospital(models.Model):
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'hospital'
+        db_table = 'Hospital'
+
 
 
 class IcdTable(models.Model):
@@ -171,8 +60,8 @@ class IcdTable(models.Model):
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'icd_table'
+        db_table = 'IcdTable'
+
 
 
 class InPatient(models.Model):
@@ -183,8 +72,8 @@ class InPatient(models.Model):
     room = models.ForeignKey('Room', models.DO_NOTHING)
 
     class Meta:
-        managed = False
-        db_table = 'in_patient'
+        db_table = 'InPatient'
+
 
 
 class InsuranceProvider(models.Model):
@@ -200,8 +89,7 @@ class InsuranceProvider(models.Model):
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'insurance_provider'
+        db_table = 'InsuranceProvider'
 
 
 class Lab(models.Model):
@@ -216,8 +104,7 @@ class Lab(models.Model):
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'lab'
+        db_table = 'Lab'
 
 
 class LabResult(models.Model):
@@ -229,8 +116,7 @@ class LabResult(models.Model):
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'lab_result'
+        db_table = 'LabResult'
 
 
 class NonMedicalStaff(models.Model):
@@ -249,8 +135,7 @@ class NonMedicalStaff(models.Model):
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'non_medical_staff'
+        db_table = 'NonMedicalStaff'
 
 
 class NursHmPatient(models.Model):
@@ -260,8 +145,7 @@ class NursHmPatient(models.Model):
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'nurs_hm_patient'
+        db_table = 'NursHmPatient'
 
 
 class Nurse(models.Model):
@@ -279,8 +163,7 @@ class Nurse(models.Model):
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'nurse'
+        db_table = 'Nurse'
 
 
 class OutPatient(models.Model):
@@ -289,8 +172,7 @@ class OutPatient(models.Model):
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'out_patient'
+        db_table = 'OutPatient'
 
 
 class PatAppointment(models.Model):
@@ -301,27 +183,25 @@ class PatAppointment(models.Model):
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'pat_appointment'
+        db_table = 'PatAppointment'
 
 
 class Patient(models.Model):
     p_id = models.AutoField(primary_key=True)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    state = models.CharField(max_length=2)
-    city = models.CharField(max_length=30)
-    street_address = models.CharField(max_length=120)
-    zip_code = models.IntegerField()
-    phone = models.BigIntegerField()
-    e_mail = models.CharField(max_length=30)
-    member_insurance_id = models.CharField(max_length=30)
-    register_date = models.DateTimeField()
-    tbl_last_dt = models.DateTimeField()
+    first_name = models.CharField(max_length=30,blank=True, null=True)
+    last_name = models.CharField(max_length=30,blank=True, null=True)
+    state = models.CharField(max_length=2,blank=True, null=True)
+    city = models.CharField(max_length=30,blank=True, null=True)
+    street_address = models.CharField(max_length=120,blank=True, null=True)
+    zip_code = models.CharField(max_length=30,blank=True, null=True)
+    phone = models.BigIntegerField(blank=True, null=True)
+    e_mail = models.CharField(max_length=30,blank=True, null=True)
+    member_insurance_id = models.CharField(max_length=30,blank=True, null=True)
+    register_date = models.DateTimeField(auto_now_add=True)
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
-        managed = False
-        db_table = 'patient'
+        db_table = 'Patient'
 
 
 class Receipt(models.Model):
@@ -332,8 +212,7 @@ class Receipt(models.Model):
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'receipt'
+        db_table = 'Receipt'
 
 
 class Room(models.Model):
@@ -344,8 +223,7 @@ class Room(models.Model):
     hospital = models.ForeignKey(Hospital, models.DO_NOTHING)
 
     class Meta:
-        managed = False
-        db_table = 'room'
+        db_table = 'Room'
 
 
 class Treatment(models.Model):
@@ -357,5 +235,4 @@ class Treatment(models.Model):
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'treatment'
+        db_table = 'Treatment'

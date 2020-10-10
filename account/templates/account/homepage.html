@@ -1,0 +1,20 @@
+{% extends 'patient/index.html' %}
+
+{% block title %}homepage{% endblock %}
+
+{% block content %}
+    <div class="jumbotron text-center">
+      <h1 class="display-4">Welcome to HIMS!</h1>
+      <p class="lead"></p>
+      <hr class="my-4">
+        <div style="height: 150px"></div>
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-primary btn-lg" href="{% url 'doctor_login' %}" role="button">I am a doctor</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary btn-lg" href="{% url 'patient_login' %}" role="button">I am a patient</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
