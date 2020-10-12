@@ -5,12 +5,19 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Patient
 from .forms import patientform
+#from account import urls
 
 # Create your views here.
-
+@login_required(login_url='patient_login')
 def dashboard(request, pk):
-    return render(request, 'patient/dashboard.html')
+    patient = Patient.objects.get(p_id=pk)
 
+    context = {
+        'patient':patient
+    }
+    return render(request, 'patient/dashboard.html',context)
+
+@login_required(login_url='patient_login')
 def update_patient_account(request, pk):
     patient = Patient.objects.get(p_id=pk)
 

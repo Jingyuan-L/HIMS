@@ -16,11 +16,36 @@ def homepage(request):
 
 def patient_login(request):
     if request.user.is_authenticated:
-        return redirect('dashboard', pk = pk)
+        current_user = request.user
+        current_patient = Patient.objects.get(user = current_user.id)
+        return redirect('dashboard', pk = current_patient.p_id)
     else:
+        message = ''
         if request.method == 'POST':
-            username_get = request.POST.get()
-    return render(request, 'account/patient_login.html')
+            username_get = request.POST.get('username')
+            pwd_get = request.POST.get('password')
+
+            user = authenticate(request, username = username_get, password=pwd_get)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    current_user = request.user
+                    current_patient = Patient.objects.get(user=current_user.id)
+                    return redirect('dashboard', pk=current_patient.p_id)
+                else:
+                    message = 'account is not active'
+            else:
+                message = 'username or password wrong'
+
+        context = {
+            'message' : message
+        }
+
+    return render(request, 'account/patient_login.html', context)
+
+def logout_user(request):
+    logout(request)
+    return redirect('homepage')
 
 def doctor_login(request):
     return render(request, 'account/doctor_login.html')
@@ -42,7 +67,7 @@ def register(requset):
                     new_user = User.objects.create_user(username=username_get, password=pwd1_get,email=email_get)
                     new_user.save()
                     Patient.objects.create(user= new_user, e_mail=email_get)
-                    return redirect('homepage')
+                    return redirect('patient_login')
                 else:
                     message = 'different password'
             except:
