@@ -34,13 +34,11 @@ def update_patient_account(request, pk):
             city_get = p_form.cleaned_data['city']
             streetaddress_get = p_form.cleaned_data['street_address']
             zipcode_get = p_form.cleaned_data['zip_code']
-            memberinsuranceid_get = p_form.cleaned_data['member_insurance_id']
 
             patient = Patient.objects.filter(p_id=pk)
             patient.update(p_id=pk, e_mail=email_get,phone=phone_get, state = state_get, city = city_get,
                            first_name = firstname_get, last_name = lastname_get,
-                           street_address =streetaddress_get, zip_code = zipcode_get,
-                           member_insurance_id = memberinsuranceid_get)
+                           street_address =streetaddress_get, zip_code = zipcode_get)
             #触发时间更新
             patient = Patient.objects.get(p_id = pk)
             patient.phone = phone_get
@@ -52,3 +50,4 @@ def update_patient_account(request, pk):
         'patient': patient
     }
     return render(request, 'patient/update_patient_account.html', context)
+

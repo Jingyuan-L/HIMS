@@ -11,38 +11,34 @@ class patientform(ModelForm):
         widgets = {
             'first_name' : forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholedr': 'please input your first name'
+                'placeholder': 'please input your first name'
             }),
             'last_name': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholedr': 'please input your last name'
+                'placeholder': 'please input your last name'
             }),
             'state': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholedr': 'state'
+                'placeholder': 'state'
             }),
             'city': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholedr': 'city'
+                'placeholder': 'city'
             }),
             'street_address': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholedr': 'street_address'
+                'placeholder': 'street_address'
             }),
             'zip_code': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholedr': 'zip_code'
+                'placeholder': 'zip_code'
             }),
             'phone': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholedr': 'phone'
+                'placeholder': 'phone'
             }),
             'e_mail': forms.EmailInput(attrs={
                 'class': 'form-control',
-                'placeholedr': 'e_mail'
-            }),
-            'member_insurance_id': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholedr': 'member_insurance_id'
+                'placeholder': 'e_mail'
             })
         }

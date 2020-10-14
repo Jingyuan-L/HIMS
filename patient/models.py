@@ -66,7 +66,7 @@ class IcdTable(models.Model):
 
 
 class InPatient(models.Model):
-    p = models.OneToOneField('Patient', models.DO_NOTHING, primary_key=True)
+    p_id = models.OneToOneField('PatAppointment', models.DO_NOTHING, primary_key=True,db_column='p_id')
     start_time = models.DateTimeField()
     end_time = models.DateTimeField(blank=True, null=True)
     tbl_last_dt = models.DateTimeField()
@@ -86,11 +86,20 @@ class InsuranceProvider(models.Model):
     zip_code = models.IntegerField()
     phone = models.BigIntegerField()
     e_mail = models.CharField(max_length=30)
-    ap = models.ForeignKey('PatAppointment', models.DO_NOTHING)
     tbl_last_dt = models.DateTimeField()
 
     class Meta:
         db_table = 'InsuranceProvider'
+
+class Ins_Pat(models.Model):
+    ins_p_id = models.ForeignKey('InsuranceProvider', models.DO_NOTHING,db_column='ins_p_id')
+    p_id = models.ForeignKey('Patient', models.DO_NOTHING,db_column='p_id')
+    insurance_id = models.IntegerField(auto_created=True)
+    tbl_last_dt = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'Ins_Pat'
+        unique_together = ("ins_p_id", "p_id")
 
 
 class Lab(models.Model):
@@ -140,7 +149,7 @@ class NonMedicalStaff(models.Model):
 
 
 class NursHmPatient(models.Model):
-    p = models.OneToOneField('Patient', models.DO_NOTHING, primary_key=True)
+    p_id = models.OneToOneField('PatAppointment', models.DO_NOTHING, primary_key=True,db_column='p_id')
     start_time = models.DateTimeField()
     end_time = models.DateTimeField(blank=True, null=True)
     tbl_last_dt = models.DateTimeField()
@@ -168,7 +177,7 @@ class Nurse(models.Model):
 
 
 class OutPatient(models.Model):
-    p = models.OneToOneField('Patient', models.DO_NOTHING, primary_key=True)
+    p_id = models.OneToOneField('PatAppointment', models.DO_NOTHING, primary_key=True,db_column='p_id')
     treated_time = models.DateTimeField()
     tbl_last_dt = models.DateTimeField()
 
@@ -178,17 +187,20 @@ class OutPatient(models.Model):
 
 class PatAppointment(models.Model):
     ap_id = models.AutoField(primary_key=True)
-    p = models.ForeignKey('Patient', models.DO_NOTHING)
-    doctor = models.ForeignKey(Doctor, models.DO_NOTHING)
+    p_id = models.ForeignKey('Patient', models.DO_NOTHING,db_column='p_id')
+    doctor = models.ForeignKey(Doctor, models.DO_NOTHING,db_column='doctor')
+    ins_p_id = models.ForeignKey(InsuranceProvider, models.DO_NOTHING,default=1,db_column='ins_p_id')
     ap_time = models.DateTimeField()
-    tbl_last_dt = models.DateTimeField()
+    status = models.CharField(max_length=30,default='processing')
+    last_ap = models.ForeignKey('PatAppointment', models.DO_NOTHING,blank=True, null=True,db_column='last_ap')
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'PatAppointment'
 
 
 class Patient(models.Model):
-    user = models.ForeignKey(User, models.DO_NOTHING, db_column='user')
+    user = models.ForeignKey(User, models.DO_NOTHING, db_column='user',default=1)
     p_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=30,blank=True, null=True)
     last_name = models.CharField(max_length=30,blank=True, null=True)
@@ -198,7 +210,6 @@ class Patient(models.Model):
     zip_code = models.CharField(max_length=30,blank=True, null=True)
     phone = models.BigIntegerField(blank=True, null=True)
     e_mail = models.CharField(max_length=30,blank=True, null=True)
-    member_insurance_id = models.CharField(max_length=30,blank=True, null=True)
     register_date = models.DateTimeField(auto_now_add=True)
     tbl_last_dt = models.DateTimeField(auto_now=True)
 
