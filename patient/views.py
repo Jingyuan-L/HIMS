@@ -51,3 +51,11 @@ def update_patient_account(request, pk):
     }
     return render(request, 'patient/update_patient_account.html', context)
 
+@login_required(login_url='patient_login')
+def appointment(request, pk):
+    patient = Patient.objects.get(p_id=pk)
+
+    context = {
+        'patient': patient
+    }
+    return render(request, 'patient/appointment.html', context)

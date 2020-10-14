@@ -66,7 +66,7 @@ class IcdTable(models.Model):
 
 
 class InPatient(models.Model):
-    p_id = models.OneToOneField('PatAppointment', models.DO_NOTHING, primary_key=True,db_column='p_id')
+    ap_id = models.OneToOneField('PatAppointment', models.DO_NOTHING, primary_key=True,db_column='ap_id')
     start_time = models.DateTimeField()
     end_time = models.DateTimeField(blank=True, null=True)
     tbl_last_dt = models.DateTimeField()
@@ -149,7 +149,7 @@ class NonMedicalStaff(models.Model):
 
 
 class NursHmPatient(models.Model):
-    p_id = models.OneToOneField('PatAppointment', models.DO_NOTHING, primary_key=True,db_column='p_id')
+    ap_id = models.OneToOneField('PatAppointment', models.DO_NOTHING, primary_key=True,db_column='ap_id')
     start_time = models.DateTimeField()
     end_time = models.DateTimeField(blank=True, null=True)
     tbl_last_dt = models.DateTimeField()
@@ -177,7 +177,7 @@ class Nurse(models.Model):
 
 
 class OutPatient(models.Model):
-    p_id = models.OneToOneField('PatAppointment', models.DO_NOTHING, primary_key=True,db_column='p_id')
+    ap_id = models.OneToOneField('PatAppointment', models.DO_NOTHING, primary_key=True,db_column='ap_id')
     treated_time = models.DateTimeField()
     tbl_last_dt = models.DateTimeField()
 
@@ -193,6 +193,7 @@ class PatAppointment(models.Model):
     ap_time = models.DateTimeField()
     status = models.CharField(max_length=30,default='processing')
     last_ap = models.ForeignKey('PatAppointment', models.DO_NOTHING,blank=True, null=True,db_column='last_ap')
+    type = models.CharField(max_length=30,default='outpatient')
     tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
