@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 
-from .models import Patient
+from .models import Patient,PatAppointment,Treatment
 from .forms import patientform
 #from account import urls
 
@@ -53,9 +53,23 @@ def update_patient_account(request, pk):
 
 @login_required(login_url='patient_login')
 def appointment(request, pk):
+    appointment = PatAppointment.objects.filter(p_id=pk)
     patient = Patient.objects.get(p_id=pk)
-
     context = {
-        'patient': patient
+        'patient': patient,
+        'appointment': appointment,
+        'p_id':pk
     }
     return render(request, 'patient/appointment.html', context)
+
+@login_required(login_url='patient_login')
+def view_appointment(request, ap_id):
+
+    appointment = PatAppointment.objects.get(ap_id=pk)
+    treatment = Treatment.objects.filter(ap_id = pk)
+
+    context = {
+        'appointment': appointment,
+        'treatment': treatment
+    }
+    return render(request, 'patient/view_appointment.html', context)

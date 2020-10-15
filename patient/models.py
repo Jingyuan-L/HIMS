@@ -20,6 +20,7 @@ class Billing(models.Model):
 
 
 class Doctor(models.Model):
+    user = models.ForeignKey(User, models.DO_NOTHING, db_column='user', default=1)
     doctor_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
@@ -186,12 +187,18 @@ class OutPatient(models.Model):
 
 
 class PatAppointment(models.Model):
+    STATUS = (
+        ('processing','processing'),
+        ('further operation','further operation'),
+        ('end', 'end')
+    )
+
     ap_id = models.AutoField(primary_key=True)
     p_id = models.ForeignKey('Patient', models.DO_NOTHING,db_column='p_id')
     doctor = models.ForeignKey(Doctor, models.DO_NOTHING,db_column='doctor')
     ins_p_id = models.ForeignKey(InsuranceProvider, models.DO_NOTHING,default=1,db_column='ins_p_id')
     ap_time = models.DateTimeField()
-    status = models.CharField(max_length=30,default='processing')
+    status = models.CharField(max_length=30,choices=STATUS, default='processing')
     last_ap = models.ForeignKey('PatAppointment', models.DO_NOTHING,blank=True, null=True,db_column='last_ap')
     type = models.CharField(max_length=30,default='outpatient')
     tbl_last_dt = models.DateTimeField(auto_now=True)
