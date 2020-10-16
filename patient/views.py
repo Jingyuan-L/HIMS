@@ -2,8 +2,9 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
-from .models import Patient,PatAppointment,Treatment
+from .models import Patient,PatAppointment,Treatment,Doctor,Hospital,Ins_Pat,InsuranceProvider,OutPatient
 from .forms import patientform
 #from account import urls
 
@@ -16,6 +17,8 @@ def dashboard(request, pk):
         'patient':patient
     }
     return render(request, 'patient/dashboard.html',context)
+
+
 
 @login_required(login_url='patient_login')
 def update_patient_account(request, pk):
@@ -51,6 +54,8 @@ def update_patient_account(request, pk):
     }
     return render(request, 'patient/update_patient_account.html', context)
 
+
+
 @login_required(login_url='patient_login')
 def appointment(request, pk):
     appointment = PatAppointment.objects.filter(p_id=pk)
@@ -62,14 +67,63 @@ def appointment(request, pk):
     }
     return render(request, 'patient/appointment.html', context)
 
+
+
 @login_required(login_url='patient_login')
 def view_appointment(request, ap_id):
-
-    appointment = PatAppointment.objects.get(ap_id=pk)
-    treatment = Treatment.objects.filter(ap_id = pk)
+    appointment = PatAppointment.objects.get(ap_id=ap_id)
+    patient = Patient.objects.get(p_id=appointment.p_id)
+    treatment = Treatment.objects.filter(ap_id = ap_id)
 
     context = {
+        'patient':patient,
         'appointment': appointment,
         'treatment': treatment
     }
     return render(request, 'patient/view_appointment.html', context)
+
+
+@login_required(login_url='patient_login')
+def make_appointment(request, pk):
+    patient = Patient.objects.get(p_id=pk)
+    context = {
+        'patient': patient
+    }
+    if request.method == "POST":
+        seldoctor_get = request.POST.get('seldoctor')
+        treat_time_get = request.POST.get('treated_time')
+        insname_get = request.POST.get('ins')
+        print(request.POST)
+        doctor = Doctor.objects.get(first_name=seldoctor_get)
+        inp = InsuranceProvider.objects.get(ins_provider_name__startswith=insname_get)
+        new_ap = PatAppointment.objects.create(doctor=doctor, type='outpatient', status='processing',
+                                               ins_p_id=inp, p_id=patient)
+        new_ap.save()
+        new_out = OutPatient.objects.create(ap_id=new_ap, treated_time=treat_time_get)
+        new_out.save()
+        return redirect('appointment',pk = pk)
+    else:
+        try:
+            have_ins = Ins_Pat.objects.filter(p_id= pk)
+            inslist = []
+            for inp in have_ins:
+                inslist.append(inp.ins_p_id.ins_provider_name)
+            hospitallist = Hospital.objects.all().values("hospital_name").distinct()
+            context['hospitallist'] = hospitallist
+            context['inslist'] = inslist
+        except Exception:
+            context['login_err'] = 'login_err'
+            return render(request, "patient/make_appointment.html", context)
+
+        return render(request, "patient/make_appointment.html", context)
+
+
+@login_required(login_url='patient_login')
+def getdoctor(request):
+    if request.method == 'GET':
+        selhospital=request.GET.get('selhospital')
+        if selhospital:
+            data = list(Doctor.objects.filter(hospital__hospital_name=selhospital).values('first_name'))
+            return JsonResponse(data, safe=False)
+
+

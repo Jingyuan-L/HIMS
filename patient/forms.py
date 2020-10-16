@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Patient
+from .models import Patient,PatAppointment
 
 class patientform(ModelForm):
     class Meta:
@@ -42,3 +42,5 @@ class patientform(ModelForm):
                 'placeholder': 'e_mail'
             })
         }
+
+

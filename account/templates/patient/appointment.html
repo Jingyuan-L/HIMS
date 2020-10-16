@@ -16,6 +16,7 @@
                       <th scope="col">Doctor</th>
                       <th scope="col">Type</th>
                       <th scope="col">Insurance Provider</th>
+                      <th scope="col">create time</th>
                       <th scope="col">View Details</th>
                     </tr>
                   </thead>
@@ -23,10 +24,11 @@
                     {% for i in appointment %}
                         <tr>
                           <th scope="row">{{ i.ap_id }}</th>
-                          <td>{{ i.hospital }}</td>
-                          <td>{{ i.doctor }}</td>
+                          <td>{{ i.doctor.hospital.hospital_name }}</td>
+                          <td>{{ i.doctor.first_name }}</td>
                           <td>{{ i.type }}</td>
-                          <td>{{ i.ins_p_id }}</td>
+                          <td>{{ i.ins_p_id.ins_provider_name }}</td>
+                          <td>{{ i.ins_p_id.tbl_last_dt }}</td>
                           <td>
                               <a class="btn btn-sm btn-info" href="{% url 'view_appointment'  i.ap_id %}">View</a>
                           </td>
@@ -35,7 +37,7 @@
                   </tbody>
                 </table>
             <div style="height: 50px"></div>
-            <a href="#" class="btn btn-primary">Make a new appointment</a>
+            <a href=" {% url 'make_appointment' patient.p_id %} " class="btn btn-primary">Make a new appointment</a>
           </div>
         </div>
     </div>

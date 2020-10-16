@@ -2,6 +2,9 @@ ALTER TABLE patient MODIFY  register_date datetime not null default current_time
 ALTER TABLE patient MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
 ALTER TABLE InsuranceProvider MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
 ALTER TABLE Ins_pat MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
+ALTER TABLE patappointment MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
+ALTER TABLE outpatient MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
+ALTER TABLE patappointment MODIFY  ap_time datetime not null default current_timestamp;
 
 INSERT INTO InsuranceProvider (ins_provider_name) VALUES ("UnitedHealth Group Inc.");
 INSERT INTO InsuranceProvider (ins_provider_name) VALUES ("Aetna Inc.");

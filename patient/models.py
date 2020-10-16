@@ -180,7 +180,7 @@ class Nurse(models.Model):
 class OutPatient(models.Model):
     ap_id = models.OneToOneField('PatAppointment', models.DO_NOTHING, primary_key=True,db_column='ap_id')
     treated_time = models.DateTimeField()
-    tbl_last_dt = models.DateTimeField()
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'OutPatient'
@@ -193,14 +193,20 @@ class PatAppointment(models.Model):
         ('end', 'end')
     )
 
+    TYPE = (
+        ('outpatient','outpatient'),
+        ('inpatient','inpatient'),
+        ('nursinghome','nursinghome')
+    )
+
     ap_id = models.AutoField(primary_key=True)
     p_id = models.ForeignKey('Patient', models.DO_NOTHING,db_column='p_id')
     doctor = models.ForeignKey(Doctor, models.DO_NOTHING,db_column='doctor')
     ins_p_id = models.ForeignKey(InsuranceProvider, models.DO_NOTHING,default=1,db_column='ins_p_id')
-    ap_time = models.DateTimeField()
+    ap_time = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=30,choices=STATUS, default='processing')
     last_ap = models.ForeignKey('PatAppointment', models.DO_NOTHING,blank=True, null=True,db_column='last_ap')
-    type = models.CharField(max_length=30,default='outpatient')
+    type = models.CharField(max_length=30,default='outpatient',choices=TYPE)
     tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
