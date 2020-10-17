@@ -1,13 +1,27 @@
 ALTER TABLE patient MODIFY  register_date datetime not null default current_timestamp;
 ALTER TABLE patient MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
+ALTER TABLE InsuranceProvider MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
+ALTER TABLE Ins_pat MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
+ALTER TABLE patappointment MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
+ALTER TABLE outpatient MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
+ALTER TABLE patappointment MODIFY  ap_time datetime not null default current_timestamp;
 
-ALTER TABLE patient MODIFY first_name VARCHAR(30) NULL;
-ALTER TABLE patient MODIFY last_name  VARCHAR(30) NULL;
-ALTER TABLE patient MODIFY state VARCHAR(2) NULL;
-ALTER TABLE patient MODIFY city  VARCHAR(30) NULL;
-ALTER TABLE patient MODIFY street_address VARCHAR(120) NULL;
-ALTER TABLE patient MODIFY zip_code INT NULL;
-ALTER TABLE patient MODIFY phone BIGINT NULL;
-ALTER TABLE patient MODIFY e_mail VARCHAR(30) NULL;
-ALTER TABLE patient MODIFY member_insurance_id VARCHAR(30) NULL;
+INSERT INTO InsuranceProvider (ins_provider_name) VALUES ("UnitedHealth Group Inc.");
+INSERT INTO InsuranceProvider (ins_provider_name) VALUES ("Aetna Inc.");
+INSERT INTO InsuranceProvider (ins_provider_name) VALUES ("Anthem Inc.");
+
+INSERT INTO Ins_Pat (ins_p_id,p_id) VALUES (1,1);
+INSERT INTO Ins_Pat (ins_p_id,p_id) VALUES (3,1);
+
+INSERT INTO hospital (hospital_name) VALUES ('NYU Medical Center');
+INSERT INTO hospital (hospital_name) VALUES ('Rochester General Hospital');
+
+INSERT INTO doctor (user, first_name, last_name, hospital_id) VALUES (1,'Jack','Smith',1);
+INSERT INTO doctor (user, first_name, last_name, hospital_id) VALUES (2,'Tom','Smith',1);
+INSERT INTO doctor (user, first_name, last_name, hospital_id) VALUES (3,'David','Smith',2);
+INSERT INTO doctor (user, first_name, last_name, hospital_id) VALUES (4,'Kate','Smith',2);
+
+
+
+
 
