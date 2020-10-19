@@ -72,7 +72,7 @@ def appointment(request, pk):
 @login_required(login_url='patient_login')
 def view_appointment(request, ap_id):
     appointment = PatAppointment.objects.get(ap_id=ap_id)
-    patient = Patient.objects.get(p_id=appointment.p_id)
+    patient = Patient.objects.get(p_id=appointment.p_id.p_id)
     treatment = Treatment.objects.filter(ap_id = ap_id)
 
     context = {

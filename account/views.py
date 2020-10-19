@@ -1,5 +1,6 @@
-from patient.models import Patient
+from patient.models import Patient,Doctor
 from patient import urls
+from doctor import urls
 from .forms import RegisterForm
 
 from django.shortcuts import render,redirect
@@ -48,7 +49,33 @@ def logout_user(request):
     return redirect('homepage')
 
 def doctor_login(request):
-    return render(request, 'account/doctor_login.html')
+    if request.user.is_authenticated:
+        current_user = request.user
+        current_doctor = Doctor.objects.get(user=current_user.id)
+        return redirect('doctor_dashboard', pk=current_doctor.doctor_id)
+    else:
+        message = ''
+        if request.method == 'POST':
+            username_get = request.POST.get('username')
+            pwd_get = request.POST.get('password')
+
+            user = authenticate(request, username=username_get, password=pwd_get)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    current_user = request.user
+                    current_doctor = Doctor.objects.get(user=current_user.id)
+                    return redirect('doctor_dashboard', pk=current_doctor.doctor_id)
+                else:
+                    message = 'account is not active'
+            else:
+                message = 'username or password wrong'
+
+        context = {
+            'message': message
+        }
+
+    return render(request, 'account/doctor_login.html', context)
 
 def register(requset):
     r_form = RegisterForm()

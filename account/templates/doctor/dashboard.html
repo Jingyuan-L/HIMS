@@ -1,0 +1,43 @@
+{% extends 'doctor/index.html' %}
+
+{% block title %}doctor dashboard{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="jumbotron">
+              <h1 class="display-4">Welcome DR.{{ doctor.first_name }}!</h1>
+              <p class="lead"></p>
+              <hr class="my-4">
+            </div>
+        </div>
+        <div class="row">
+            <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">appointment id</th>
+                      <th scope="col">patient</th>
+                      <th scope="col">patient_id</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Insurance Provider</th>
+                      <th scope="col">View Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in today_ap %}
+                        <tr>
+                          <th scope="row">{{ i.ap_id }}</th>
+                          <td>{{ i.p_id.first_name }}</td>
+                          <td>{{ i.p_id.p_id }}</td>
+                          <td>{{ i.type }}</td>
+                          <td>{{ i.ins_p_id.ins_provider_name }}</td>
+                          <td>
+                              <a class="btn btn-sm btn-info" href="{% url 'view_appointment'  i.ap_id %}">View</a>
+                          </td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+        </div>
+    </div>
+{% endblock %}

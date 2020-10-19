@@ -178,7 +178,7 @@ class Nurse(models.Model):
 
 
 class OutPatient(models.Model):
-    ap_id = models.OneToOneField('PatAppointment', models.DO_NOTHING, primary_key=True,db_column='ap_id')
+    ap_id = models.OneToOneField('PatAppointment', models.DO_NOTHING, primary_key=True,db_column='ap_id',related_name='OutPatient')
     treated_time = models.DateTimeField()
     tbl_last_dt = models.DateTimeField(auto_now=True)
 
