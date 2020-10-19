@@ -3,5 +3,33 @@
 {% block title %}doctor_login{% endblock %}
 
 {% block content %}
-    D
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-6">
+                    <div class="card" style="width: 32rem;">
+                      <div class="card-body">
+                        <h5 class="card-title text-center">login</h5>
+                      <hr class="my-4">
+                        <form action="{% url 'doctor_login' %}" method="post">
+                            <div style="height: 50px"></div>
+                            {% csrf_token %}
+                            <label for="user">username:</label>
+                            <input type="text" id="user" class="form-control" name="username" placeholder="username" required>
+                            <label for="pwd">password:</label>
+                            <input type="password" id="pwd" class="form-control" name="password" placeholder="password" required>
+                            {% if message %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ message }}
+                            </div>
+                            {% endif %}
+                            <div style="height: 50px"></div>
+                            <button type="submit" class="btn btn-primary">login</button>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+    </div>
 {% endblock %}
