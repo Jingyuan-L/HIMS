@@ -4,7 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 
-from .models import Patient, PatAppointment, Treatment, Doctor, Hospital, Ins_Pat, InsuranceProvider, OutPatient, Billing, Lab, LabResult, IcdTable
+from .models import Patient, PatAppointment, Treatment, Doctor, Hospital, Ins_Pat, InsuranceProvider, OutPatient, \
+                    Billing, Lab, LabResult, IcdTable, InPatient, NursHmPatient
 from .forms import patientform
 
 
@@ -69,15 +70,43 @@ def appointment(request, pk):
 
 
 @login_required(login_url='patient_login')
+def billing(request, pk):
+    patient = Patient.objects.get(p_id=pk)
+    appointments = PatAppointment.objects.filter(p_id=pk)
+    treatments = []
+    for apnt in appointments:
+        treatments.extend(list(Treatment.objects.filter(ap_id=apnt.ap_id)))
+    billings = []
+    for treat in treatments:
+        billings.extend(list(Billing.objects.filter(treat_id=treat.treat_id)))
+
+
+    context = {
+        'billings': billings,
+        'patient': patient
+    }
+    return render(request, 'patient/billing.html', context)
+
+
+@login_required(login_url='patient_login')
 def view_appointment(request, ap_id):
     appointment = PatAppointment.objects.get(ap_id=ap_id)
     patient = Patient.objects.get(p_id=appointment.p_id.p_id)
     treatment = Treatment.objects.filter(ap_id=ap_id)
-
+    inpatient, outpatient, nursinghome = None, None, None
+    if appointment.type == 'inpatient':
+        inpatient = InPatient.objects.filter(ap_id=ap_id)
+    elif appointment.type == 'outpatient':
+        outpatient = OutPatient.objects.filter(ap_id=ap_id)
+    elif appointment.type == 'nursinghome':
+        nursinghome = NursHmPatient.objects.filter(ap_id=ap_id)
     context = {
         'patient': patient,
         'appointment': appointment,
-        'treatment': treatment
+        'treatment': treatment,
+        'inpatient': inpatient,
+        'outpatient': outpatient,
+        'nursinghome': nursinghome
     }
     return render(request, 'patient/view_appointment.html', context)
 
@@ -85,7 +114,7 @@ def view_appointment(request, ap_id):
 @login_required(login_url='patient_login')
 def view_treatment(request, treat_id):
     treatment = Treatment.objects.get(treat_id=treat_id)
-    appointment = PatAppointment.objects.get(ap_id=treatment.ap_id)
+    appointment = PatAppointment.objects.get(ap_id=treatment.ap.ap_id)
     lab_results = LabResult.objects.filter(treat_id=treat_id)
 
     context = {

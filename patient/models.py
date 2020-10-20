@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 class Billing(models.Model):
     b_id = models.BigAutoField(primary_key=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+    paid = models.BooleanField(default=False)
     treat = models.ForeignKey('Treatment', models.DO_NOTHING)
     due_date = models.DateTimeField()
     tbl_last_dt = models.DateTimeField()
@@ -232,9 +233,15 @@ class Patient(models.Model):
 
 
 class Receipt(models.Model):
+    METHOD = (
+        ('Credit Card', 'Credit Card'),
+        ('Debit Card', 'Debit Card'),
+        ('PayPal', 'PayPal')
+    )
     rcpt_id = models.BigAutoField(primary_key=True)
     payment_date = models.DateTimeField()
     payment_amout = models.DecimalField(max_digits=8, decimal_places=2)
+    pay_method = models.CharField(max_length=30, default='Credit Card', choices=METHOD)
     b = models.ForeignKey(Billing, models.DO_NOTHING)
     tbl_last_dt = models.DateTimeField()
 

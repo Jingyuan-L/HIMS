@@ -43,6 +43,48 @@
                 <th scope="row">Last Appointment ID</th>
                 <td>{{ appointment.last_ap.ap_id }}</td>
             </tr>
+            {% if inpatient %}
+                <tr>
+                    <th scope="row">Start Time</th>
+                    <td>{{ inpatient.start_time }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">End Time</th>
+                    <td>{{ inpatient.end_time }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Hospital</th>
+                    <td>{{ inpatient.room.hospital }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Room ID</th>
+                    <td>{{ inpatient.room.room_id }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Room Name</th>
+                    <td>{{ inpatient.room.room_name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Room Description</th>
+                    <td>{{ inpatient.room.description }}</td>
+                </tr>
+            {% endif %}
+            {% if outpatient %}
+                <tr>
+                    <th scope="row">Treated Time</th>
+                    <td>{{ outpatient.treated_time }}</td>
+                </tr>
+            {% endif %}
+            {% if nursinghome %}
+                <tr>
+                    <th scope="row">Start Time</th>
+                    <td>{{ nursinghome.start_time }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">End Time</th>
+                    <td>{{ nursinghome.end_time }}</td>
+                </tr>
+            {% endif %}
             </tbody>
         </table>
     </div>
