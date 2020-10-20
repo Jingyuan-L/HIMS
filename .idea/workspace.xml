@@ -24,6 +24,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -48,15 +49,18 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../PycharmProjects/social_media" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -72,6 +76,30 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="HIMS" type="Python.DjangoServer" factoryName="Django server">
+      <module name="HIMS" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="HIMS.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
       <module name="HIMS" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -96,7 +124,10 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b7237793-5e6a-4a52-88fb-1b031ff97fab" name="Default Changelist" comment="" />
@@ -115,6 +146,9 @@
       <workItem from="1602634873598" duration="1848000" />
       <workItem from="1602726619806" duration="929000" />
       <workItem from="1602946876427" duration="653000" />
+      <workItem from="1602947723061" duration="3160000" />
+      <workItem from="1603132170273" duration="144000" />
+      <workItem from="1603132446500" duration="25122000" />
     </task>
     <task id="LOCAL-00001" summary="改了很多">
       <created>1602343822056</created>
@@ -141,7 +175,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="2" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="改了很多" />
@@ -154,9 +188,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="488" y="235" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1601391604887" />
-    <state x="2087" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602646794995">
-      <screen x="1920" y="-3" width="1536" height="832" />
+    <state x="167" y="41" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603133166503">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="167" y="41" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1603133166503" />
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.-3.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1602311343059" />
     <state x="2087" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.-3.1536.832/0.0.1920.1040@1920.-3.1536.832" timestamp="1602646794995" />
     <state x="2287" y="-3" key="CommitChangelistDialog2" timestamp="1602680977045">
@@ -164,27 +199,27 @@
     </state>
     <state x="367" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601391263636" />
     <state x="2287" y="-3" key="CommitChangelistDialog2/1920.-3.1536.832/0.0.1920.1040@1920.-3.1536.832" timestamp="1602680977045" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1602311277749">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="592" y="217" key="FileChooserDialogImpl" timestamp="1603143176075">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="592" y="217" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1602726637711" />
+    <state x="592" y="217" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603143176075" />
     <state x="740" y="274" key="FileChooserDialogImpl/1920.-3.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1602311277749" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1602947529340">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1603164255875">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1602947529340" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1602947529339">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603164255875" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1603164255875">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1602947529339" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1602947529339">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603164255875" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1603164255875">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1602947529339" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1602947529339">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603164255875" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1603164255875">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1602947529339" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603164255875" />
     <state x="338" y="71" key="SettingsEditor" timestamp="1602301229044">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -196,9 +231,9 @@
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601391074996" />
     <state x="2281" y="143" key="Vcs.Push.Dialog.v2/1920.-3.1536.832/0.0.1920.1040@1920.-3.1536.832" timestamp="1602680994794" />
-    <state x="574" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601391710662">
+    <state x="574" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603155713851">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1601391710662" />
+    <state x="574" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1603155713851" />
   </component>
 </project>

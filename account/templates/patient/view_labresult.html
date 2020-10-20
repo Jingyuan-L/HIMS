@@ -1,0 +1,58 @@
+{% extends 'patient/index.html' %}
+
+{% block title %}View Lab Test Result{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <blockquote class="blockquote text-center">
+            <h5>Lab Test Result Detail</h5>
+        </blockquote>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="row">Test ID</th>
+                <td>{{ lab_results.test_id }}</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Treatment ID</th>
+                <td>{{ lab_results.treat.treat_id }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Description</th>
+                <td>{{ lab_results.test_description }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Test Result</th>
+                <td>{{ lab_results.test_result }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <blockquote class="blockquote text-center">
+            <h5>Lab Information</h5>
+        </blockquote>
+        <teble class="teble table-hover">
+            <thead>
+            <tr>
+                <th scope="row">Lab Name</th>
+                <td>{{ lab.lab_name }}</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Lab Address</th>
+                <td>{{ lab.street_address }}, {{ lab.city }}, {{ lab.state }}, {{ lab.zip_code }} </td>
+            </tr>
+            <tr>
+                <th scope="row">Contact Information</th>
+                <td>{{ lab.phone }}, {{ lab.e_mail }}</td>
+            </tr>
+            </tbody>
+        </teble>
+    </div>
+
+{% endblock %}

@@ -1,12 +1,14 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 
-from .models import Patient,PatAppointment,Treatment,Doctor,Hospital,Ins_Pat,InsuranceProvider,OutPatient
+from .models import Patient, PatAppointment, Treatment, Doctor, Hospital, Ins_Pat, InsuranceProvider, OutPatient, Billing, Lab, LabResult, IcdTable
 from .forms import patientform
-#from account import urls
+
+
+# from account import urls
 
 # Create your views here.
 @login_required(login_url='patient_login')
@@ -14,10 +16,9 @@ def dashboard(request, pk):
     patient = Patient.objects.get(p_id=pk)
 
     context = {
-        'patient':patient
+        'patient': patient
     }
-    return render(request, 'patient/dashboard.html',context)
-
+    return render(request, 'patient/dashboard.html', context)
 
 
 @login_required(login_url='patient_login')
@@ -39,21 +40,20 @@ def update_patient_account(request, pk):
             zipcode_get = p_form.cleaned_data['zip_code']
 
             patient = Patient.objects.filter(p_id=pk)
-            patient.update(p_id=pk, e_mail=email_get,phone=phone_get, state = state_get, city = city_get,
-                           first_name = firstname_get, last_name = lastname_get,
-                           street_address =streetaddress_get, zip_code = zipcode_get)
-            #触发时间更新
-            patient = Patient.objects.get(p_id = pk)
+            patient.update(p_id=pk, e_mail=email_get, phone=phone_get, state=state_get, city=city_get,
+                           first_name=firstname_get, last_name=lastname_get,
+                           street_address=streetaddress_get, zip_code=zipcode_get)
+            # 触发时间更新
+            patient = Patient.objects.get(p_id=pk)
             patient.phone = phone_get
             patient.save()
-            return redirect('update_patient_account', pk = pk)
+            return redirect('update_patient_account', pk=pk)
 
     context = {
         'p_form': p_form,
         'patient': patient
     }
     return render(request, 'patient/update_patient_account.html', context)
-
 
 
 @login_required(login_url='patient_login')
@@ -63,24 +63,49 @@ def appointment(request, pk):
     context = {
         'patient': patient,
         'appointment': appointment,
-        'p_id':pk
+        'p_id': pk
     }
     return render(request, 'patient/appointment.html', context)
-
 
 
 @login_required(login_url='patient_login')
 def view_appointment(request, ap_id):
     appointment = PatAppointment.objects.get(ap_id=ap_id)
     patient = Patient.objects.get(p_id=appointment.p_id.p_id)
-    treatment = Treatment.objects.filter(ap_id = ap_id)
+    treatment = Treatment.objects.filter(ap_id=ap_id)
 
     context = {
-        'patient':patient,
+        'patient': patient,
         'appointment': appointment,
         'treatment': treatment
     }
     return render(request, 'patient/view_appointment.html', context)
+
+
+@login_required(login_url='patient_login')
+def view_treatment(request, treat_id):
+    treatment = Treatment.objects.get(treat_id=treat_id)
+    appointment = PatAppointment.objects.get(ap_id=treatment.ap_id)
+    lab_results = LabResult.objects.filter(treat_id=treat_id)
+
+    context = {
+        'lab_results': lab_results,
+        'appointment': appointment,
+        'treatment': treatment
+    }
+    return render(request, 'patient/view_treatment.html', context)
+
+
+@login_required(login_url='patient_login')
+def view_labresult(request, test_id):
+    lab_result = LabResult.objects.get(test_id=test_id)
+    lab = Lab.objects.get(lab_id=lab_result.lab.lab_id)
+
+    context = {
+        'lab_results': lab_result,
+        'lab': lab
+    }
+    return render(request, 'patient/view_labresult.html', context)
 
 
 @login_required(login_url='patient_login')
@@ -101,10 +126,10 @@ def make_appointment(request, pk):
         new_ap.save()
         new_out = OutPatient.objects.create(ap_id=new_ap, treated_time=treat_time_get)
         new_out.save()
-        return redirect('appointment',pk = pk)
+        return redirect('appointment', pk=pk)
     else:
         try:
-            have_ins = Ins_Pat.objects.filter(p_id= pk)
+            have_ins = Ins_Pat.objects.filter(p_id=pk)
             inslist = []
             for inp in have_ins:
                 inslist.append(inp.ins_p_id.ins_provider_name)
@@ -121,9 +146,7 @@ def make_appointment(request, pk):
 @login_required(login_url='patient_login')
 def getdoctor(request):
     if request.method == 'GET':
-        selhospital=request.GET.get('selhospital')
+        selhospital = request.GET.get('selhospital')
         if selhospital:
             data = list(Doctor.objects.filter(hospital__hospital_name=selhospital).values('first_name'))
             return JsonResponse(data, safe=False)
-
-

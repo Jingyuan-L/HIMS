@@ -21,7 +21,6 @@ INSERT INTO doctor (user, first_name, last_name, hospital_id) VALUES (2,'Tom','S
 INSERT INTO doctor (user, first_name, last_name, hospital_id) VALUES (3,'David','Smith',2);
 INSERT INTO doctor (user, first_name, last_name, hospital_id) VALUES (4,'Kate','Smith',2);
 
-
-
+INSERT INTO patappointment (status, type, doctor, ins_p_id, p_id) VALUES ('end', 'inpatient', 1, 1, 1)
 
 

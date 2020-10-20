@@ -6,6 +6,7 @@ class patientform(ModelForm):
     class Meta:
         model = Patient
         fields = '__all__'
+
         exclude = ['p_id','register_date','tbl_last_dt','user']
 
         widgets = {
@@ -42,5 +43,6 @@ class patientform(ModelForm):
                 'placeholder': 'e_mail'
             })
         }
+
 
 

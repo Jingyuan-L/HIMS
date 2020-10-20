@@ -3,5 +3,75 @@
 {% block title %}View Appoinment{% endblock %}
 
 {% block content %}
+    <div class="container">
+        <blockquote class="blockquote text-center">
+            <h5>Appoinment Detail</h5>
+        </blockquote>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="row">Patient Name</th>
+                <td>{{ patient.first_name }} {{ patient.last_name }}</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Appointment ID</th>
+                <td>{{ appointment.ap_id }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Doctor Name</th>
+                <td>{{ appointment.doctor.first_name }} {{ appointment.doctor.last_name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Insurance Provider</th>
+                <td>{{ appointment.ins_p_id.ins_provider_name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Appointment Time</th>
+                <td>{{ appointment.ap_time }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Appointment Status</th>
+                <td>{{ appointment.status }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Appointment Type</th>
+                <td>{{ appointment.type }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Last Appointment ID</th>
+                <td>{{ appointment.last_ap.ap_id }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
+    <div class="container">
+        <blockquote class="blockquote text-center">
+            <h5>Treatment Related to this Appointment</h5>
+        </blockquote>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Treatment ID</th>
+                <th scope="col">Treatment Type</th>
+                <th scope="col">ICD Name</th>
+                <th scope="col">View Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in treatment %}
+                <tr>
+                    <th scope="row">{{ i.treat_id }}</th>
+                    <td>{{ i.treat_type }}</td>
+                    <td>{{ i.icd_code.description }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-info" href="{% url 'view_treatment'  i.treat_id %}">View</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
