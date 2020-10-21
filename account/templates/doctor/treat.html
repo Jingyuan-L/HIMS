@@ -1,0 +1,59 @@
+{% extends 'doctor/index.html' %}
+
+{% block title %}Make Treatment{% endblock %}
+
+{% block content %}
+
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        function myFunction() {
+            var icd = document.getElementById("icd").value;
+            var source = new Array();
+            $.ajax({
+                type: 'GET',
+                url: '/doctor/geticd/',
+                data: {'icd': icd},
+                dataType: 'json',
+                success: function (data) {
+                      $.each(data, function(i, item){
+                          source[i] = '(' + item.icd_code+ ')' + item.description
+                      });
+
+                }
+            });
+        }
+    </script>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-6">
+                <div class="card" style="width: 32rem;">
+                  <div class="card-body">
+                    <h5 class="card-title text-center">Make a new treatment</h5>
+                  <hr class="my-4">
+                    <form action="{% url 'treat' appointment.ap_id %}" method="post">
+                        <div style="height: 50px"></div>
+                        {% csrf_token %}
+                        <label for="myInput">icd code:</label>
+                        <input type="text" id="icd" oninput="myFunction()">
+                        </br>
+                        </br>
+
+
+                           <button type="submit" class="btn btn-primary">submit</button>
+                            </br>
+
+                            </br>
+                            <h4 style="color: #ff0000"><b>{{ login_err }}</b></h4>
+                        <div style="height: 50px"></div>
+                    </form>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+    </div>
+{% endblock %}

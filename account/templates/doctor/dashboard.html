@@ -32,7 +32,7 @@
                           <td>{{ i.type }}</td>
                           <td>{{ i.ins_p_id.ins_provider_name }}</td>
                           <td>
-                              <a class="btn btn-sm btn-info" href="{% url 'view_appointment'  i.ap_id %}">View</a>
+                              <a class="btn btn-sm btn-info" href="{% url 'doc_view_appointment'  i.ap_id %}">View</a>
                           </td>
                         </tr>
                     {% endfor %}
