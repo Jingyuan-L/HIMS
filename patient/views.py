@@ -59,7 +59,7 @@ def update_patient_account(request, pk):
 
 @login_required(login_url='patient_login')
 def appointment(request, pk):
-    appointment = PatAppointment.objects.filter(p_id=pk)
+    appointment = PatAppointment.objects.filter(p_id=pk, status='processing')
     patient = Patient.objects.get(p_id=pk)
     context = {
         'patient': patient,
@@ -95,11 +95,11 @@ def view_appointment(request, ap_id):
     treatment = Treatment.objects.filter(ap_id=ap_id)
     inpatient, outpatient, nursinghome = None, None, None
     if appointment.type == 'inpatient':
-        inpatient = InPatient.objects.filter(ap_id=ap_id)
+        inpatient = InPatient.objects.get(ap_id=ap_id)
     elif appointment.type == 'outpatient':
-        outpatient = OutPatient.objects.filter(ap_id=ap_id)
+        outpatient = OutPatient.objects.get(ap_id=ap_id)
     elif appointment.type == 'nursinghome':
-        nursinghome = NursHmPatient.objects.filter(ap_id=ap_id)
+        nursinghome = NursHmPatient.objects.get(ap_id=ap_id)
     context = {
         'patient': patient,
         'appointment': appointment,
