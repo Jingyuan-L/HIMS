@@ -11,6 +11,8 @@ urlpatterns = [
     path('view_appointment/<int:ap_id>/', views.view_appointment, name = 'view_appointment'),
     path('view_treatment/<int:treat_id>/', views.view_treatment, name='view_treatment'),
     path('view_labresult/<int:test_id>/', views.view_labresult, name='view_labresult'),
+    path('view_receipt/<int:b_id>/', views.view_receipt, name='view_receipt'),
+    path('pay_bill/<int:b_id>/', views.pay_bill, name='pay_bill'),
     path('getdoctor/', views.getdoctor, name = 'getdoctor'),
 
 ]

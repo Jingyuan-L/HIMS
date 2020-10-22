@@ -9,7 +9,7 @@ db = MySQLdb.connect(host="localhost",
                      port=3306,
                      )
 cur = db.cursor()
-sql = "INSERT INTO icd_table(icd_code, description, tbl_last_dt) VALUES(%s, %s, now())"
+sql = "INSERT INTO icdtable(icd_code, description, tbl_last_dt) VALUES(%s, %s, now())"
 
 icd_file_name = 'categories.csv'
 with open(icd_file_name) as csv_file:

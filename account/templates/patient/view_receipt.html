@@ -1,0 +1,39 @@
+{% extends 'patient/index.html' %}
+
+{% block title %}View Receipt{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <blockquote class="blockquote text-center">
+            <h5>Receipt Detail</h5>
+        </blockquote>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="row">Receipt ID</th>
+                <td>{{ receipt.rcpt_id }}</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Billing ID</th>
+                <td>{{ receipt.b.b_id }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Paid Date</th>
+                <td>{{ receipt.payment_date }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Amount</th>
+                <td>{{ receipt.payment_amout }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Payment Method</th>
+                <td>{{ receipt.pay_method }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

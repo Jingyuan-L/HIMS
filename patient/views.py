@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-
+import datetime
 from .models import Patient, PatAppointment, Treatment, Doctor, Hospital, Ins_Pat, InsuranceProvider, OutPatient, \
-                    Billing, Lab, LabResult, IcdTable, InPatient, NursHmPatient
+                    Billing, Lab, LabResult, IcdTable, InPatient, NursHmPatient, Receipt
 from .forms import patientform
 
 
@@ -86,6 +86,51 @@ def billing(request, pk):
         'patient': patient
     }
     return render(request, 'patient/billing.html', context)
+
+
+@login_required(login_url='patient_login')
+def view_receipt(request, b_id):
+    billing = Billing.objects.get(b_id=b_id)
+    receipt = Receipt.objects.get(b=billing)
+    treat = Treatment.objects.get(billing=billing)
+    app = PatAppointment.objects.get(ap_id=treat.ap.ap_id)
+    patient = Patient.objects.get(p_id=app.p_id.p_id)
+
+    context = {
+        'billing': billing,
+        'receipt': receipt,
+        'patient': patient,
+        'p_id': patient.p_id
+    }
+    return render(request, 'patient/view_receipt.html', context)
+
+
+@login_required(login_url='patient_login')
+def pay_bill(request, b_id):
+    billing = Billing.objects.get(b_id=b_id)
+    treat = Treatment.objects.get(billing=billing)
+    app = PatAppointment.objects.get(ap_id=treat.ap.ap_id)
+    patient = Patient.objects.get(p_id=app.p_id.p_id)
+
+
+    if request.method == "POST":
+        method = request.POST.get('pay_method')
+        new_receipt = Receipt.objects.create(b=billing, payment_amout=billing.amount,
+                                             payment_date=datetime.datetime.now(), pay_method=method,
+                                             tbl_last_dt=datetime.datetime.now())
+        new_receipt.save()
+        billing.paid = True
+        billing.save()
+        print("post payment")
+        return redirect('view_receipt', b_id=b_id)
+
+    context = {
+        'billing': billing,
+        'patient': patient,
+        'p_id': patient.p_id,
+        'b_id': b_id
+    }
+    return render(request, 'patient/pay_bill.html', context)
 
 
 @login_required(login_url='patient_login')
