@@ -18,9 +18,16 @@
                       $.each(data, function(i, item){
                           source[i] = '(' + item.icd_code+ ')' + item.description
                       });
+                      alert(source[0])
+                      $('#icd').autocomplete({
+                          source:source,
+                          maxLength: 10
+                      })
 
                 }
             });
+
+
         }
     </script>
 
