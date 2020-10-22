@@ -15,16 +15,14 @@
                 data: {'icd': icd},
                 dataType: 'json',
                 success: function (data) {
-                      $.each(data, function(i, item){
-                          source[i] = '(' + item.icd_code+ ')' + item.description
-                      });
-                      alert(source[0])
-                      $('#icd').autocomplete({
-                          source:source,
-                          maxLength: 10
-                      })
+                    var content = '';
+                    $.each(data, function (i, item) {
+                        content += '<option value=' + item.icd_code + '>' + item.icd_code + ' ' + item.description + '</option>'
+                    });
+                    $('#show_icd_res').html(content)
+                },
 
-                }
+
             });
 
 
@@ -46,6 +44,9 @@
                         {% csrf_token %}
                         <label for="myInput">icd code:</label>
                         <input type="text" id="icd" oninput="myFunction()">
+                        <select id="show_icd_res">
+
+                        </select>
                         </br>
                         </br>
 
