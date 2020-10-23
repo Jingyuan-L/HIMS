@@ -14,7 +14,7 @@ class Billing(models.Model):
     paid = models.BooleanField(default=False)
     treat = models.ForeignKey('Treatment', models.DO_NOTHING)
     due_date = models.DateTimeField()
-    tbl_last_dt = models.DateTimeField()
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'Billing'
@@ -33,7 +33,7 @@ class Doctor(models.Model):
     e_mail = models.CharField(max_length=30, blank=True, null=True)
     hiredate = models.DateTimeField(blank=True, null=True)
     hospital = models.ForeignKey('Hospital', models.DO_NOTHING)
-    tbl_last_dt = models.DateTimeField()
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'Doctor'
@@ -50,7 +50,7 @@ class Hospital(models.Model):
     zip_code = models.IntegerField(blank=True, null=True)
     phone = models.BigIntegerField(blank=True, null=True)
     e_mail = models.CharField(max_length=30, blank=True, null=True)
-    tbl_last_dt = models.DateTimeField()
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'Hospital'
@@ -60,7 +60,7 @@ class Hospital(models.Model):
 class IcdTable(models.Model):
     icd_code = models.CharField(primary_key=True, max_length=30)
     description = models.CharField(max_length=300)
-    tbl_last_dt = models.DateTimeField()
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'IcdTable'
@@ -71,7 +71,7 @@ class InPatient(models.Model):
     ap_id = models.OneToOneField('PatAppointment', models.DO_NOTHING, primary_key=True,db_column='ap_id')
     start_time = models.DateTimeField()
     end_time = models.DateTimeField(blank=True, null=True)
-    tbl_last_dt = models.DateTimeField()
+    tbl_last_dt = models.DateTimeField(auto_now=True)
     room = models.ForeignKey('Room', models.DO_NOTHING)
 
     class Meta:
@@ -88,7 +88,7 @@ class InsuranceProvider(models.Model):
     zip_code = models.IntegerField(blank=True, null=True)
     phone = models.BigIntegerField(blank=True, null=True)
     e_mail = models.CharField(max_length=30, blank=True, null=True)
-    tbl_last_dt = models.DateTimeField()
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'InsuranceProvider'
@@ -113,7 +113,7 @@ class Lab(models.Model):
     zip_code = models.IntegerField()
     phone = models.BigIntegerField()
     e_mail = models.CharField(max_length=30)
-    tbl_last_dt = models.DateTimeField()
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'Lab'
@@ -125,7 +125,7 @@ class LabResult(models.Model):
     test_result = models.CharField(max_length=30)
     lab = models.ForeignKey(Lab, models.DO_NOTHING)
     treat = models.ForeignKey('Treatment', models.DO_NOTHING)
-    tbl_last_dt = models.DateTimeField()
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'LabResult'
@@ -144,7 +144,7 @@ class NonMedicalStaff(models.Model):
     hiredate = models.DateTimeField()
     type = models.CharField(max_length=30)
     hospital = models.ForeignKey(Hospital, models.DO_NOTHING)
-    tbl_last_dt = models.DateTimeField()
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'NonMedicalStaff'
@@ -154,7 +154,7 @@ class NursHmPatient(models.Model):
     ap_id = models.OneToOneField('PatAppointment', models.DO_NOTHING, primary_key=True,db_column='ap_id')
     start_time = models.DateTimeField()
     end_time = models.DateTimeField(blank=True, null=True)
-    tbl_last_dt = models.DateTimeField()
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'NursHmPatient'
@@ -172,7 +172,7 @@ class Nurse(models.Model):
     e_mail = models.CharField(max_length=30)
     hiredate = models.DateTimeField()
     hospital = models.ForeignKey(Hospital, models.DO_NOTHING)
-    tbl_last_dt = models.DateTimeField()
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'Nurse'
@@ -243,7 +243,7 @@ class Receipt(models.Model):
     payment_amout = models.DecimalField(max_digits=8, decimal_places=2)
     pay_method = models.CharField(max_length=30, default='Credit Card', choices=METHOD)
     b = models.ForeignKey(Billing, models.DO_NOTHING)
-    tbl_last_dt = models.DateTimeField()
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'Receipt'
@@ -266,7 +266,7 @@ class Treatment(models.Model):
     ap = models.ForeignKey(PatAppointment, models.DO_NOTHING)
     icd_code = models.ForeignKey(IcdTable, models.DO_NOTHING, db_column='icd_code')
     treat_type = models.CharField(max_length=30)
-    tbl_last_dt = models.DateTimeField()
+    tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'Treatment'

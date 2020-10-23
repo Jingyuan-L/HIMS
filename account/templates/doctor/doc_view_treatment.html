@@ -1,0 +1,78 @@
+{% extends 'doctor/index.html' %}
+
+{% block title %}View Treatment{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <blockquote class="blockquote text-center">
+            <h5>Treatment Detail</h5>
+        </blockquote>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="row">Treatment ID</th>
+                <td>{{ treatment.treat_id }}</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Appointment ID</th>
+                <td>{{ appointment.ap_id }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Doctor Name</th>
+                <td>{{ appointment.doctor.first_name }} {{ appointment.doctor.last_name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">ICD Code</th>
+                <td>{{ treatment.icd_code.icd_code }}</td>
+            </tr>
+            <tr>
+                <th scope="row">ICD Description</th>
+                <td>{{ treatment.icd_code.description }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Treatment Type</th>
+                <td>{{ treatment.treat_type }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Treatment Description</th>
+                <td>{{ treatment.description }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <blockquote class="blockquote text-center">
+            <h5>Lab Results related to this Treatment</h5>
+        </blockquote>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Test ID</th>
+                <th scope="col">Lab Name</th>
+                <th scope="col">Test Description</th>
+                <th scope="col">Test Result</th>
+                <th scope="col">View Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in lab_results %}
+                <tr>
+                    <th scope="row">{{ i.test_id }}</th>
+                    <td>{{ i.lab.lab_name }}</td>
+                    <td>{{ i.test_description }}</td>
+                    <td>{{ i.test_result }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-info" href="{% url 'view_labresult'  i.test_id %}">View</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="row">
+            <a class="btn btn-sm btn-info" href="{% url 'make_labtest'  treatment.treat_id %}">make a test</a>
+        </div>
+    </div>
+{% endblock %}

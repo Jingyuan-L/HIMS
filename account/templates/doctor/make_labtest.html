@@ -1,0 +1,46 @@
+{% extends 'doctor/index.html' %}
+
+{% block title %}Make lab test{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-6">
+                <div class="card" style="width: 32rem;">
+                  <div class="card-body">
+                    <h5 class="card-title text-center">Make a new lab test</h5>
+                  <hr class="my-4">
+                    <form action="{% url 'make_labtest' treat.treat_id %}" method="post">
+                        <div style="height: 50px"></div>
+                        {% csrf_token %}
+                        <label for="lab">Lab:</label>
+                        <select class="field" name="lab" id="lab">
+                            <option value ="select">select</option>
+                            {% for lab in lablist %}
+                                <option value ='{{ lab.lab_name }}'>{{ lab.lab_name }}</option>
+                            {% endfor %}
+                        </select>
+                        </br>
+                        </br>
+                        <label for="description">description:</label>
+                        <input type="text" id="description" class="form-control" name="description" required>
+                        </br>
+                        </br>
+
+
+                           <button type="submit" class="btn btn-primary">submit</button>
+                            </br>
+
+                            </br>
+                            <h4 style="color: #ff0000"><b>{{ login_err }}</b></h4>
+                        <div style="height: 50px"></div>
+                    </form>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+    </div>
+{% endblock %}

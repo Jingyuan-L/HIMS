@@ -160,12 +160,14 @@ def view_appointment(request, ap_id):
 def view_treatment(request, treat_id):
     treatment = Treatment.objects.get(treat_id=treat_id)
     appointment = PatAppointment.objects.get(ap_id=treatment.ap.ap_id)
+    patient = appointment.p_id
     lab_results = LabResult.objects.filter(treat_id=treat_id)
 
     context = {
         'lab_results': lab_results,
         'appointment': appointment,
-        'treatment': treatment
+        'treatment': treatment,
+        'patient':patient
     }
     return render(request, 'patient/view_treatment.html', context)
 
@@ -192,9 +194,8 @@ def make_appointment(request, pk):
         seldoctor_get = request.POST.get('seldoctor')
         treat_time_get = request.POST.get('treated_time')
         insname_get = request.POST.get('ins')
-        print(request.POST)
         doctor = Doctor.objects.get(first_name=seldoctor_get)
-        inp = InsuranceProvider.objects.get(ins_provider_name__startswith=insname_get)
+        inp = InsuranceProvider.objects.get(ins_provider_name=insname_get)
         new_ap = PatAppointment.objects.create(doctor=doctor, type='outpatient', status='processing',
                                                ins_p_id=inp, p_id=patient)
         new_ap.save()

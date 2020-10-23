@@ -6,6 +6,8 @@ ALTER TABLE patappointment MODIFY  tbl_last_dt datetime not null default current
 ALTER TABLE outpatient MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
 ALTER TABLE patappointment MODIFY  ap_time datetime not null default current_timestamp;
 ALTER TABLE receipt MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
+ALTER TABLE treatment MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
+ALTER TABLE lab MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
 
 INSERT INTO InsuranceProvider (ins_provider_name) VALUES ("UnitedHealth Group Inc.");
 INSERT INTO InsuranceProvider (ins_provider_name) VALUES ("Aetna Inc.");
@@ -23,5 +25,8 @@ INSERT INTO doctor (user, first_name, last_name, hospital_id) VALUES (3,'David',
 INSERT INTO doctor (user, first_name, last_name, hospital_id) VALUES (4,'Kate','Smith',2);
 
 INSERT INTO patappointment (status, type, doctor, ins_p_id, p_id) VALUES ('end', 'inpatient', 1, 1, 1)
+
+INSERT INTO lab (lab_name) VALUES ("NYU Medical Center Lab");
+INSERT INTO lab (lab_name) VALUES ("Rochester General Hospital Lab");
 
 

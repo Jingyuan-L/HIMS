@@ -109,11 +109,21 @@
                     <td>{{ i.treat_type }}</td>
                     <td>{{ i.icd_code.description }}</td>
                     <td>
-                        <a class="btn btn-sm btn-info" href="{% url 'view_treatment'  i.treat_id %}">View</a>
+                        <a class="btn btn-sm btn-info" href="{% url 'doc_view_treatment'  i.treat_id %}">View</a>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+    </div>
+    <div class="container">
+        <div class="row">
+           <div class="col-md-2">
+            <a class="btn btn-sm btn-info" href="{% url 'treat'  appointment.ap_id %}">make a new treatment</a>
+           </div>
+            <div class="col-md-2">
+                <a class="btn btn-sm btn-info" href="#">make a new appointment</a>
+            </div>
+        </div>
     </div>
 {% endblock %}

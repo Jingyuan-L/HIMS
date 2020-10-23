@@ -43,10 +43,16 @@
                         <div style="height: 50px"></div>
                         {% csrf_token %}
                         <label for="myInput">icd code:</label>
-                        <input type="text" id="icd" oninput="myFunction()">
-                        <select id="show_icd_res">
-
-                        </select>
+                        <input type="text" id="icd" name="icd" oninput="myFunction()">
+                        </br>
+                        <label for="show_icd_res">icd name:</label>
+                        <select id="show_icd_res"></select>
+                        </br>
+                        <label for="description">description:</label>
+                        <input type="text" id="description" name="description">
+                        </br>
+                        <label for="treat_type">treat type:</label>
+                        <input type="text" id="treat_type" name="treat_type">
                         </br>
                         </br>
 
@@ -63,5 +69,6 @@
             </div>
             <div class="col-md-6"></div>
         </div>
+
     </div>
 {% endblock %}
