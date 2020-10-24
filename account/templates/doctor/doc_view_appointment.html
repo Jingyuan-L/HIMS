@@ -90,8 +90,17 @@
     </div>
 
     <div class="container">
-        <blockquote class="blockquote text-center">
-            <h5>Treatment Related to this Appointment</h5>
+        <blockquote>
+            <div class="row">
+                <div class="col-md-2">
+                    {% if appointment.status == 'processing' %}
+                        <a class="btn btn-sm btn-info" href="{% url 'treat'  appointment.ap_id %}">make a new treatment</a>
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <h5 class="text-center">Treatment Related to this Appointment</h5>
+                </div>
+            </div>
         </blockquote>
         <table class="table">
             <thead>
@@ -116,14 +125,23 @@
             </tbody>
         </table>
     </div>
-    <div class="container">
-        <div class="row">
-           <div class="col-md-2">
-            <a class="btn btn-sm btn-info" href="{% url 'treat'  appointment.ap_id %}">make a new treatment</a>
-           </div>
-            <div class="col-md-2">
-                <a class="btn btn-sm btn-info" href="#">make a new appointment</a>
+    {% if appointment.status == 'processing' %}
+        <div class="container">
+            <blockquote>
+                <h5 class="text-center">Further operation</h5>
+            </blockquote>
+            <div style="height: 20px"></div>
+            <div class="row">
+               <div class="col-md-4">
+                    <a class="btn btn-info" href="{% url 'doc_make_outpatient' appointment.ap_id %}">make a new outpatient appointment</a>
+               </div>
+                <div class="col-md-4">
+                    <a class="btn btn-info" href="{% url 'doc_make_inpatient' appointment.ap_id %}">need to stay in hosipital</a>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-info" href="{% url 'doc_make_nursinghome' appointment.ap_id %}">need stay at home</a>
+                </div>
             </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}

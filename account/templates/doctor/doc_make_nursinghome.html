@@ -1,0 +1,37 @@
+{% extends 'doctor/index.html' %}
+
+{% block title %}Make nursing home appointment{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-6">
+                <div class="card" style="width: 32rem;">
+                  <div class="card-body">
+                    <h5 class="card-title text-center">Make nursing home appointment</h5>
+                  <hr class="my-4">
+                    <form action="{% url 'doc_make_nursinghome' old_ap.ap_id %}" method="post">
+                        <div style="height: 50px"></div>
+                        {% csrf_token %}
+
+                        <label for="end_time">end time:</label>
+                        <input type="datetime-local" id="end_time" class="form-control" name="end_time" required>
+                        </br>
+                        </br>
+
+
+                           <button type="submit" class="btn btn-primary">submit</button>
+                            </br>
+
+                            </br>
+                            <h4 style="color: #ff0000"><b>{{ login_err }}</b></h4>
+                        <div style="height: 50px"></div>
+                    </form>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+    </div>
+{% endblock %}

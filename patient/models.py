@@ -255,6 +255,7 @@ class Room(models.Model):
     description = models.CharField(max_length=100, blank=True, null=True)
     tbl_last_dt = models.DateTimeField()
     hospital = models.ForeignKey(Hospital, models.DO_NOTHING)
+    occupied = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'Room'
