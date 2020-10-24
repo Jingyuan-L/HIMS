@@ -8,6 +8,9 @@ ALTER TABLE patappointment MODIFY  ap_time datetime not null default current_tim
 ALTER TABLE receipt MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
 ALTER TABLE treatment MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
 ALTER TABLE lab MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
+ALTER TABLE room MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
+ALTER TABLE nurshmpatient MODIFY  tbl_last_dt datetime not null default current_timestamp on update current_timestamp;
+
 
 INSERT INTO InsuranceProvider (ins_provider_name) VALUES ("UnitedHealth Group Inc.");
 INSERT INTO InsuranceProvider (ins_provider_name) VALUES ("Aetna Inc.");
@@ -28,5 +31,35 @@ INSERT INTO patappointment (status, type, doctor, ins_p_id, p_id) VALUES ('end',
 
 INSERT INTO lab (lab_name) VALUES ("NYU Medical Center Lab");
 INSERT INTO lab (lab_name) VALUES ("Rochester General Hospital Lab");
+
+INSERT INTO room (room_name,hospital_id) VALUES ('01A',1);
+INSERT INTO room (room_name,hospital_id) VALUES ('01B',1);
+INSERT INTO room (room_name,hospital_id) VALUES ('01C',1);
+INSERT INTO room (room_name,hospital_id) VALUES ('01D',1);
+INSERT INTO room (room_name,hospital_id) VALUES ('01E',1);
+INSERT INTO room (room_name,hospital_id) VALUES ('02A',1);
+INSERT INTO room (room_name,hospital_id) VALUES ('02B',1);
+INSERT INTO room (room_name,hospital_id) VALUES ('02C',1);
+INSERT INTO room (room_name,hospital_id) VALUES ('02D',1);
+INSERT INTO room (room_name,hospital_id) VALUES ('02E',1);
+
+
+INSERT INTO room (room_name,hospital_id) VALUES ('01A',2);
+INSERT INTO room (room_name,hospital_id) VALUES ('01B',2);
+INSERT INTO room (room_name,hospital_id) VALUES ('01C',2);
+INSERT INTO room (room_name,hospital_id) VALUES ('01D',2);
+INSERT INTO room (room_name,hospital_id) VALUES ('01E',2);
+INSERT INTO room (room_name,hospital_id) VALUES ('02A',2);
+INSERT INTO room (room_name,hospital_id) VALUES ('02B',2);
+INSERT INTO room (room_name,hospital_id) VALUES ('02C',2);
+INSERT INTO room (room_name,hospital_id) VALUES ('02D',2);
+INSERT INTO room (room_name,hospital_id) VALUES ('02E',2);
+INSERT INTO room (room_name,hospital_id) VALUES ('03A',2);
+INSERT INTO room (room_name,hospital_id) VALUES ('03B',2);
+INSERT INTO room (room_name,hospital_id) VALUES ('03C',2);
+INSERT INTO room (room_name,hospital_id) VALUES ('03D',2);
+INSERT INTO room (room_name,hospital_id) VALUES ('03E',2);
+
+
 
 

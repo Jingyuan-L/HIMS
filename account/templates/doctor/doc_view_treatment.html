@@ -72,7 +72,9 @@
             </tbody>
         </table>
         <div class="row">
-            <a class="btn btn-sm btn-info" href="{% url 'make_labtest'  treatment.treat_id %}">make a test</a>
+            {% if appointment.status == 'processing' %}
+                <a class="btn btn-sm btn-info" href="{% url 'make_labtest'  treatment.treat_id %}">make a test</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

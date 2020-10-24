@@ -9,7 +9,8 @@ from dateutil.relativedelta import relativedelta
 
 import datetime
 
-from patient.models import Patient,PatAppointment,Treatment,Doctor,Hospital,Ins_Pat,InsuranceProvider,OutPatient,IcdTable,InPatient,NursHmPatient,LabResult,Lab,Billing
+from patient.models import Patient,PatAppointment,Treatment,Doctor,Hospital,Ins_Pat,InsuranceProvider,\
+    OutPatient,IcdTable,InPatient,NursHmPatient,LabResult,Lab,Billing,Room
 
 
 # Create your views here.
@@ -112,6 +113,76 @@ def make_labtest(request, treat_id):
         return redirect('doc_view_treatment', treat_id=treat_id)
     return render(request, 'doctor/make_labtest.html', context)
 
+@login_required(login_url='doctor_login')
+def doc_make_outpatient(request, ap_id):
+    old_ap = PatAppointment.objects.get(ap_id=ap_id)
+    doctor = old_ap.doctor
+    context = {
+        'old_ap':old_ap,
+        'doctor': doctor,
+    }
+    if request.method == "POST":
+        treat_time_get = request.POST.get('treated_time')
+        old_ap.status = 'further operation'
+        old_ap.save()
+        new_ap = PatAppointment.objects.create(ap_time=datetime.datetime.now(), tbl_last_dt=datetime.datetime.now(),
+                                               doctor=doctor, ins_p_id=old_ap.ins_p_id, last_ap=old_ap, p_id=old_ap.p_id,
+                                               type='outpatient', status='processing')
+        new_ap.save()
+        new_out = OutPatient.objects.create(ap_id=new_ap, treated_time=treat_time_get)
+        new_out.save()
+        return redirect('doctor_dashboard', pk=doctor.doctor_id)
+    return render(request, 'doctor/doc_make_outpatient.html', context)
+
+@login_required(login_url='doctor_login')
+def doc_make_nursinghome(request, ap_id):
+    old_ap = PatAppointment.objects.get(ap_id=ap_id)
+    doctor = old_ap.doctor
+    context = {
+        'old_ap':old_ap,
+        'doctor': doctor,
+    }
+    if request.method == "POST":
+        end_time_get = request.POST.get('end_time')
+        old_ap.status = 'further operation'
+        old_ap.save()
+        new_ap = PatAppointment.objects.create(ap_time=datetime.datetime.now(), tbl_last_dt=datetime.datetime.now(),
+                                               doctor=doctor, ins_p_id=old_ap.ins_p_id, last_ap=old_ap, p_id=old_ap.p_id,
+                                               type='nursinghome', status='processing')
+        new_ap.save()
+        new_nurs = NursHmPatient.objects.create(ap_id=new_ap, start_time=datetime.datetime.now(), end_time=end_time_get,
+                                                tbl_last_dt=datetime.datetime.now())
+        new_nurs.save()
+        return redirect('doctor_dashboard', pk=doctor.doctor_id)
+    return render(request, 'doctor/doc_make_nursinghome.html', context)
+
+@login_required(login_url='doctor_login')
+def doc_make_inpatient(request, ap_id):
+    old_ap = PatAppointment.objects.get(ap_id=ap_id)
+    doctor = old_ap.doctor
+    room_list = Room.objects.filter(occupied=False, hospital=doctor.hospital)
+    context = {
+        'old_ap': old_ap,
+        'doctor': doctor,
+        'room_list': room_list
+    }
+    if request.method == "POST":
+        end_time_get = request.POST.get('end_time')
+        room_get = request.POST.get('room')
+        old_ap.status = 'further operation'
+        old_ap.save()
+        new_ap = PatAppointment.objects.create(ap_time=datetime.datetime.now(), tbl_last_dt=datetime.datetime.now(),
+                                               doctor=doctor, ins_p_id=old_ap.ins_p_id, last_ap=old_ap, p_id=old_ap.p_id,
+                                               type='inpatient', status='processing')
+        new_ap.save()
+        room = Room.objects.get(room_name=room_get, hospital=doctor.hospital)
+        room.occupied = True
+        room.save()
+        new_inpatient = InPatient.objects.create(ap_id=new_ap, start_time=datetime.datetime.now(), end_time=end_time_get,
+                                                tbl_last_dt=datetime.datetime.now(),room=room)
+        new_inpatient.save()
+        return redirect('doctor_dashboard', pk=doctor.doctor_id)
+    return render(request, 'doctor/doc_make_inpatient.html', context)
 
 def test(request):
     return render(request, 'doctor/text.html')
