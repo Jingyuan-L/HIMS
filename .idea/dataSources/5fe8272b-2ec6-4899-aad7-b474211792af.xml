@@ -1496,7 +1496,9 @@ model</ColNames>
     </column>
     <column id="415" parent="297" name="hiredate">
       <Position>10</Position>
-      <DataType>datetime(6)|0s</DataType>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="416" parent="297" name="tbl_last_dt">
@@ -2413,40 +2415,46 @@ p_id</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="578" parent="312" name="Room_hospital_id_004cc829_fk_Hospital_hospital_id">
+    <column id="578" parent="312" name="occupied">
+      <Position>6</Position>
+      <DataType>tinyint(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="579" parent="312" name="Room_hospital_id_004cc829_fk_Hospital_hospital_id">
       <ColNames>hospital_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="579" parent="312" name="PRIMARY">
+    <key id="580" parent="312" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>room_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="580" parent="312" name="Room_hospital_id_004cc829_fk_Hospital_hospital_id">
+    <foreign-key id="581" parent="312" name="Room_hospital_id_004cc829_fk_Hospital_hospital_id">
       <ColNames>hospital_id</ColNames>
       <RefTableName>hospital</RefTableName>
       <RefColNames>hospital_id</RefColNames>
     </foreign-key>
-    <column id="581" parent="313" name="treat_id">
+    <column id="582" parent="313" name="treat_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="582" parent="313" name="description">
+    <column id="583" parent="313" name="description">
       <Position>2</Position>
       <DataType>varchar(300)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="583" parent="313" name="treat_type">
+    <column id="584" parent="313" name="treat_type">
       <Position>3</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="584" parent="313" name="tbl_last_dt">
+    <column id="585" parent="313" name="tbl_last_dt">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
@@ -2454,37 +2462,37 @@ p_id</ColNames>
       <ColumnKind>normal</ColumnKind>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
-    <column id="585" parent="313" name="ap_id">
+    <column id="586" parent="313" name="ap_id">
       <Position>5</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="586" parent="313" name="icd_code">
+    <column id="587" parent="313" name="icd_code">
       <Position>6</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="587" parent="313" name="Treatment_ap_id_2f420d91_fk_PatAppointment_ap_id">
+    <index id="588" parent="313" name="Treatment_ap_id_2f420d91_fk_PatAppointment_ap_id">
       <ColNames>ap_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="588" parent="313" name="Treatment_icd_code_d39c9f93_fk_IcdTable_icd_code">
+    <index id="589" parent="313" name="Treatment_icd_code_d39c9f93_fk_IcdTable_icd_code">
       <ColNames>icd_code</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="589" parent="313" name="PRIMARY">
+    <key id="590" parent="313" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>treat_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="590" parent="313" name="Treatment_ap_id_2f420d91_fk_PatAppointment_ap_id">
+    <foreign-key id="591" parent="313" name="Treatment_ap_id_2f420d91_fk_PatAppointment_ap_id">
       <ColNames>ap_id</ColNames>
       <RefTableName>patappointment</RefTableName>
       <RefColNames>ap_id</RefColNames>
     </foreign-key>
-    <foreign-key id="591" parent="313" name="Treatment_icd_code_d39c9f93_fk_IcdTable_icd_code">
+    <foreign-key id="592" parent="313" name="Treatment_icd_code_d39c9f93_fk_IcdTable_icd_code">
       <ColNames>icd_code</ColNames>
       <RefTableName>icdtable</RefTableName>
       <RefColNames>icd_code</RefColNames>

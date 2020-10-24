@@ -89,6 +89,24 @@ def billing(request, pk):
 
 
 @login_required(login_url='patient_login')
+def history(request, pk):
+    patient = Patient.objects.get(p_id=pk)
+    appointments = PatAppointment.objects.filter(p_id=pk, status__in=('end', 'further operation'))
+    # print(appointments)
+
+    treatments = []
+    for apnt in appointments:
+        treatments.extend(list(Treatment.objects.filter(ap_id=apnt)))
+
+    # print(treatments)
+    context = {
+        'treatments': treatments,
+        'patient': patient
+    }
+    return render(request, 'patient/history.html', context)
+
+
+@login_required(login_url='patient_login')
 def view_receipt(request, b_id):
     billing = Billing.objects.get(b_id=b_id)
     receipt = Receipt.objects.get(b=billing)

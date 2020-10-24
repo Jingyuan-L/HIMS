@@ -1,0 +1,19 @@
+{% extends 'doctor/index.html' %}
+
+{% block title %}doctor dashboard{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <form action="{% url 'update_doc_account' doctor.doctor_id %}" method="post">
+                    {% csrf_token %}
+                    {{ d_form.as_p }}
+                    <button type="submit" class="btn btn-primary">update</button>
+                </form>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+    </div>
+{% endblock %}

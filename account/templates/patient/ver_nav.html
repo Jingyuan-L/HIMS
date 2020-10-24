@@ -3,5 +3,5 @@
   <a class="nav-link" href="{% url 'update_patient_account' patient.p_id %}">Account</a>
   <a class="nav-link" href="{% url 'appointment' patient.p_id %}">Appointment</a>
   <a class="nav-link" href="{% url 'billing' patient.p_id %}">Billing</a>
-  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+  <a class="nav-link" href="{% url 'history' patient.p_id %}">History</a>
 </nav>

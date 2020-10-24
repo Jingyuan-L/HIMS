@@ -3,6 +3,7 @@ from .import views
 
 
 urlpatterns = [
+
     path('<int:pk>/', views.doctor_dashboard, name='doctor_dashboard'),
     path('doc_view_appointment/<int:ap_id>/', views.doc_view_appointment, name='doc_view_appointment'),
     path('treat/<int:ap_id>/', views.treat, name='treat'),
@@ -13,4 +14,7 @@ urlpatterns = [
     path('doc_make_outpatient/<int:ap_id>/', views.doc_make_outpatient, name='doc_make_outpatient'),
     path('doc_make_nursinghome/<int:ap_id>/', views.doc_make_nursinghome, name='doc_make_nursinghome'),
     path('doc_make_inpatient/<int:ap_id>/', views.doc_make_inpatient, name='doc_make_inpatient'),
+    path('account/<int:pk>/', views.update_doc_account, name='update_doc_account'),
+    path('cur_patient/<int:pk>/', views.cur_patient, name='cur_patient'),
+
 ]

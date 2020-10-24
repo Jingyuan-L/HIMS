@@ -1,0 +1,33 @@
+{% extends 'patient/index.html' %}
+
+{% block title %}View Appoinment{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <blockquote class="blockquote text-center">
+            <h5>Treatment Related to this Appointment</h5>
+        </blockquote>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Treatment ID</th>
+                <th scope="col">Treatment Type</th>
+                <th scope="col">ICD Name</th>
+                <th scope="col">View Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in treatments %}
+                <tr>
+                    <th scope="row">{{ i.treat_id }}</th>
+                    <td>{{ i.treat_type }}</td>
+                    <td>{{ i.icd_code.description }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-info" href="{% url 'view_treatment'  i.treat_id %}">View</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

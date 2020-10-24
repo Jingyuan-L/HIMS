@@ -1,0 +1,110 @@
+{% extends 'doctor/index.html' %}
+
+{% block title %}doctor dashboard{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <blockquote class="blockquote text-center">
+            <h4>Current Appointments List</h4>
+        </blockquote>
+
+        <div class="container">
+            <blockquote class="blockquote text-center">
+                <h5>Out-Patient</h5>
+            </blockquote>
+            <table class="table">
+                <thead>
+                    <th scope="col">Appointment ID</th>
+                    <th scope="col">Patient ID</th>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Appointment Time</th>
+                    <th scope="col">Details</th>
+                </thead>
+                <tbody>
+                    {% for out_ap in out_aps %}
+                        <tr>
+                            <td>{{ out_ap.ap_id }}</td>
+                            <td>{{ out_ap.p_id.p_id }}</td>
+                            <td>{{ out_ap.p_id.first_name }}  {{ out_ap.p_id.last_name }}</td>
+                            <td>{{ out_ap.ap_time }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-info" href="{% url 'doc_view_appointment' out_ap.ap_id %}">View</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container">
+            <blockquote class="blockquote text-center">
+                <h5>In-Patient</h5>
+            </blockquote>
+            <table class="table">
+                <thead>
+                    <th scope="col">Appointment ID</th>
+                    <th scope="col">Patient ID</th>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Appointment Time</th>
+                    <th scope="col">Start Time</th>
+                    <th scope="col">End Time</th>
+                    <th scope="col">Room ID</th>
+                    <th scope="col">Details</th>
+                </thead>
+                <tbody>
+                    {% for in_info in in_infos %}
+                        <tr>
+                            <td>{{ in_info.ap_id.ap_id }}</td>
+                            <td>{{ in_info.ap_id.p_id }}</td>
+                            <td>{{ in_info.ap_id.p_id.first_name }} {{ in_info.ap_id.p_id.last_name }}</td>
+                            <td>{{ in_info.ap_id.ap_time }}</td>
+                            <td>{{ in_info.start_time }}</td>
+                            <td>{{ in_info.end_time }}</td>
+                            <td>{{ in_info.room.room_id }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-info" href="{% url 'doc_view_appointment' in_info.ap_id.ap_id %}">View</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="container">
+            <blockquote class="blockquote text-center">
+                <h5>Nursing-Home Patient</h5>
+            </blockquote>
+            <table class="table">
+                <thead>
+                    <th scope="col">Appointment ID</th>
+                    <th scope="col">Patient ID</th>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Appointment Time</th>
+                    <th scope="col">Start Time</th>
+                    <th scope="col">End Time</th>
+                    <th scope="col">Details</th>
+                </thead>
+                <tbody>
+                    {% for nurs_info in nurs_infos %}
+                        <tr>
+                            <td>{{ nurs_info.ap_id.ap_id }}</td>
+                            <td>{{ nurs_info.ap_id.p_id }}</td>
+                            <td>{{ nurs_info.ap_id.p_id.first_name }} {{ nurs_info.ap_id.p_id.last_name }}</td>
+                            <td>{{ nurs_info.ap_id.ap_time }}</td>
+                            <td>{{ nurs_info.start_time }}</td>
+                            <td>{{ nurs_info.end_time }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-info" href="{% url 'doc_view_appointment' nurs_info.ap_id.ap_id %}">View</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+{% endblock %}

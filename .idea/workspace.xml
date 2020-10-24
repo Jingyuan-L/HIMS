@@ -82,13 +82,13 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\32631\PycharmProjects\HIMS\account\templates\patient" />
-      <recent name="C:\Users\32631\PycharmProjects\HIMS\account\templates\account" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\32631\PycharmProjects\HIMS\account" />
       <recent name="C:\Users\32631\PycharmProjects\HIMS" />
+      <recent name="C:\Users\32631\PycharmProjects\HIMS\account\templates\patient" />
+      <recent name="C:\Users\32631\PycharmProjects\HIMS\account\templates\account" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\32631\PycharmProjects\HIMS\account\templates\patient" />
       <recent name="C:\Users\32631\PycharmProjects\HIMS\account\templates\account" />
     </key>
@@ -224,6 +224,7 @@
       <workItem from="1603338515506" duration="349000" />
       <workItem from="1603338909557" duration="1829000" />
       <workItem from="1603462999818" duration="4012000" />
+      <workItem from="1603557819285" duration="16606000" />
     </task>
     <task id="LOCAL-00001" summary="改了很多">
       <created>1602343822056</created>
@@ -291,22 +292,22 @@
     </state>
     <state x="592" y="217" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603464447673" />
     <state x="740" y="274" key="FileChooserDialogImpl/1920.-3.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1602311277749" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1603340740215">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1603581894097">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603340740215" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1603340740214">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603581894097" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1603581894097">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603340740214" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1603340740213">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603581894097" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1603581894097">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603340740213" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1603340740215">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603581894097" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1603581894097">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603340740215" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603581894097" />
     <state x="338" y="71" key="SettingsEditor" timestamp="1602301229044">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

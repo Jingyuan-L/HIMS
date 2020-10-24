@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.utils import timezone
 from random import choice
 from dateutil.relativedelta import relativedelta
+from .forms import DoctorForm
 
 import datetime
 
@@ -25,6 +26,72 @@ def doctor_dashboard(request, pk):
         'today_ap':today_ap
     }
     return render(request, 'doctor/dashboard.html',context)
+
+
+@login_required(login_url='doctor_login')
+def update_doc_account(request, pk):
+    doctor = Doctor.objects.get(doctor_id=pk)
+
+    d_form = DoctorForm(instance=doctor)
+
+    if request.method == 'POST':
+        d_form = (request.POST)
+        if d_form.is_valid():
+            email_get = d_form.cleaned_data['e_mail']
+            phone_get = d_form.cleaned_data['phone']
+            firstname_get = d_form.cleaned_data['first_name']
+            lastname_get = d_form.cleaned_data['last_name']
+            state_get = d_form.cleaned_data['state']
+            city_get = d_form.cleaned_data['city']
+            streetaddress_get = d_form.cleaned_data['street_address']
+            zipcode_get = d_form.cleaned_data['zip_code']
+
+            doctor = Doctor.objects.filter(p_id=pk)
+            doctor.update(p_id=pk, e_mail=email_get, phone=phone_get, state=state_get, city=city_get,
+                           first_name=firstname_get, last_name=lastname_get,
+                           street_address=streetaddress_get, zip_code=zipcode_get)
+            # 触发时间更新
+            doctor = Doctor.objects.get(p_id=pk)
+            # doctor.phone = phone_get
+            doctor.save()
+            return redirect('update_patient_account', pk=pk)
+
+    context = {
+        'd_form': d_form,
+        'doctor': doctor
+    }
+    return render(request, 'doctor/update_doc_account.html', context)
+
+
+@login_required(login_url='doctor_login')
+def cur_patient(request, pk):
+    doctor = Doctor.objects.get(doctor_id=pk)
+
+    out_aps = PatAppointment.objects.filter(doctor=pk, status='processing', type='outpatient')
+
+    in_aps = PatAppointment.objects.filter(doctor=pk, status='processing', type='inpatient')
+    in_infos =[]
+    for i in in_aps:
+        in_infos.extend(list(InPatient.objects.filter(ap_id=i.ap_id)))
+        print(i)
+
+    nurs_aps = PatAppointment.objects.filter(doctor=pk, status='processing', type='nursinghome')
+    nurs_infos = []
+    for i in nurs_aps:
+        nurs_infos.extend(list(NursHmPatient.objects.filter(ap_id=i.ap_id)))
+        print(i)
+
+    context = {
+        'doctor': doctor,
+        'out_aps': out_aps,
+        'in_aps': in_aps,
+        'in_infos': in_infos,
+        'nurs_aps': nurs_aps,
+        'nurs_infos': nurs_infos,
+
+
+    }
+    return render(request, 'doctor/cur_patient.html', context)
 
 
 @login_required(login_url='doctor_login')
