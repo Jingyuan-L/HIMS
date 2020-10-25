@@ -25,7 +25,8 @@
                         <tr>
                             <td>{{ out_ap.ap_id }}</td>
                             <td>{{ out_ap.p_id.p_id }}</td>
-                            <td>{{ out_ap.p_id.first_name }}  {{ out_ap.p_id.last_name }}</td>
+                            <td>
+                                <a href={% url 'patient_history' out_ap.ap_id %}>{{ out_ap.p_id.first_name }}  {{ out_ap.p_id.last_name }}</a></td>
                             <td>{{ out_ap.ap_time }}</td>
                             <td>
                                 <a class="btn btn-sm btn-info" href="{% url 'doc_view_appointment' out_ap.ap_id %}">View</a>
@@ -56,7 +57,9 @@
                         <tr>
                             <td>{{ in_info.ap_id.ap_id }}</td>
                             <td>{{ in_info.ap_id.p_id }}</td>
-                            <td>{{ in_info.ap_id.p_id.first_name }} {{ in_info.ap_id.p_id.last_name }}</td>
+                            <td>
+                                <a href={% url 'patient_history' in_info.ap_id.ap_id %}>{{ in_info.ap_id.p_id.first_name }} {{ in_info.ap_id.p_id.last_name }}</a>
+                            </td>
                             <td>{{ in_info.ap_id.ap_time }}</td>
                             <td>{{ in_info.start_time }}</td>
                             <td>{{ in_info.end_time }}</td>
@@ -91,7 +94,9 @@
                         <tr>
                             <td>{{ nurs_info.ap_id.ap_id }}</td>
                             <td>{{ nurs_info.ap_id.p_id }}</td>
-                            <td>{{ nurs_info.ap_id.p_id.first_name }} {{ nurs_info.ap_id.p_id.last_name }}</td>
+                            <td>
+                                <a href={% url 'patient_history' nurs_info.ap_id.ap_id %}>{{ nurs_info.ap_id.p_id.first_name }} {{ nurs_info.ap_id.p_id.last_name }}</a>
+                            </td>
                             <td>{{ nurs_info.ap_id.ap_time }}</td>
                             <td>{{ nurs_info.start_time }}</td>
                             <td>{{ nurs_info.end_time }}</td>

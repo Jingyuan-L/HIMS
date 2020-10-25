@@ -95,6 +95,24 @@ def cur_patient(request, pk):
 
 
 @login_required(login_url='doctor_login')
+def patient_history(request, ap_id):
+    cur_appt = PatAppointment.objects.get(ap_id=ap_id)
+    doctor = Doctor.objects.get(doctor_id=cur_appt.doctor.doctor_id)
+    appointments = PatAppointment.objects.filter(doctor_id=doctor.doctor_id)
+    treatments = []
+    for ap in appointments:
+        treatments.extend(list(Treatment.objects.filter(ap_id=ap.ap_id)))
+
+    context = {
+        'appointment': cur_appt,
+        'treatments': treatments,
+        'doctor': doctor,
+    }
+
+    return render(request, 'doctor/patient_history.html', context)
+
+
+@login_required(login_url='doctor_login')
 def doc_view_appointment(request, ap_id):
     appointment = PatAppointment.objects.get(ap_id=ap_id)
     doctor = appointment.doctor

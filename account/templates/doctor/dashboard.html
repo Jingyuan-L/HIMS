@@ -27,7 +27,9 @@
                     {% for i in today_ap %}
                         <tr>
                           <th scope="row">{{ i.ap_id }}</th>
-                          <td>{{ i.p_id.first_name }}</td>
+                          <td>
+                              <a href={% url 'patient_history' i.ap_id %}>{{ i.p_id.first_name }}</a>
+                          </td>
                           <td>{{ i.p_id.p_id }}</td>
                           <td>{{ i.type }}</td>
                           <td>{{ i.ins_p_id.ins_provider_name }}</td>

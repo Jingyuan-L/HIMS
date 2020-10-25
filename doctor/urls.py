@@ -16,5 +16,6 @@ urlpatterns = [
     path('doc_make_inpatient/<int:ap_id>/', views.doc_make_inpatient, name='doc_make_inpatient'),
     path('account/<int:pk>/', views.update_doc_account, name='update_doc_account'),
     path('cur_patient/<int:pk>/', views.cur_patient, name='cur_patient'),
+    path('patient_history/<int:ap_id>/', views.patient_history, name='patient_history'),
 
 ]
