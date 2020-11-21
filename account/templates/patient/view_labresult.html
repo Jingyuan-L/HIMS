@@ -36,7 +36,7 @@
             <h5>Lab Information</h5>
         </blockquote>
         <teble class="teble table-hover">
-            <thead>
+            <thead class="thead-light">
             <tr>
                 <th scope="row">Lab Name</th>
                 <td>{{ lab.lab_name }}</td>
@@ -53,6 +53,9 @@
             </tr>
             </tbody>
         </teble>
+        <blockquote class="blockquote text-center">
+            <a class="btn btn-outline-primary" href="javascript:history.go(-1)" role="button">Go Back</a>
+        </blockquote>
     </div>
 
 {% endblock %}

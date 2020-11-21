@@ -4,12 +4,15 @@
 
 {% block content %}
     <div class="container">
-        <div class="card">
-          <div class="card-body">
+{#        <div class="card">#}
+{#          <div class="card-body">#}
+        <blockquote class="blockquote text-center">
             <h5 class="card-title">Prosessing Appointment</h5>
+        </blockquote>
+
             <hr class="my-4">
                 <table class="table">
-                  <thead class="thead-dark">
+                  <thead class="thead-light">
                     <tr>
                       <th scope="col">Appointment ID</th>
                       <th scope="col">Hospital</th>
@@ -37,8 +40,13 @@
                   </tbody>
                 </table>
             <div style="height: 50px"></div>
-            <a href=" {% url 'make_appointment' patient.p_id %} " class="btn btn-primary">Make a new appointment</a>
-          </div>
-        </div>
+            <blockquote class="blockquote text-center">
+                <a href=" {% url 'make_appointment' patient.p_id %} " class="btn btn-primary">Make a new appointment</a>
+            </blockquote>
+        {#          </div>#}
+        {#        </div>#}
+        <blockquote class="blockquote text-center">
+            <a class="btn btn-outline-primary" href="{% url 'dashboard' patient.p_id %}" role="button">Go Back</a>
+        </blockquote>
     </div>
 {% endblock %}

@@ -12,8 +12,13 @@
                     {{ p_form.as_p }}
                     <button type="submit" class="btn btn-primary">update</button>
                 </form>
+                <br>
+                <a class="btn btn-outline-primary" href="{% url 'dashboard' patient.p_id %}" role="button">Go Back</a>
+                <br>
             </div>
-            <div class="col-md-6"></div>
+
         </div>
+
     </div>
+    <br>
 {% endblock %}

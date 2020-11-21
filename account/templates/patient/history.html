@@ -5,10 +5,10 @@
 {% block content %}
     <div class="container">
         <blockquote class="blockquote text-center">
-            <h5>Treatment Related to this Appointment</h5>
+            <h5>Treatment History</h5>
         </blockquote>
         <table class="table">
-            <thead>
+            <thead class="thead-light">
             <tr>
                 <th scope="col">Treatment ID</th>
                 <th scope="col">Treatment Type</th>
@@ -29,5 +29,8 @@
             {% endfor %}
             </tbody>
         </table>
+        <blockquote class="blockquote text-center">
+            <a class="btn btn-outline-primary" href="{% url 'dashboard' patient.p_id %}" role="button">Go Back</a>
+        </blockquote>
     </div>
 {% endblock %}

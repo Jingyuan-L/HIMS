@@ -8,7 +8,7 @@
             <h5>Appoinment Detail</h5>
         </blockquote>
         <table class="table table-hover">
-            <thead>
+            <thead class="thead-light">
             <tr>
                 <th scope="row">Payment for</th>
                 <td>{{ billing.b_id }}</td>
@@ -38,5 +38,8 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit Payment</button>
         </form>
+    <blockquote class="blockquote text-center">
+            <a class="btn btn-outline-primary" href="javascript:history.go(-1)" role="button">Go Back</a>
+        </blockquote>
     </div>
 {% endblock %}

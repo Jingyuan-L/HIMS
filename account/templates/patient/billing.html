@@ -8,7 +8,7 @@
             <h5>Billing List</h5>
         </blockquote>
         <table class="table table-hover">
-            <thead>
+            <thead class="thead-light">
             <tr>
                 <th scope="col">Billing ID</th>
                 <th scope="col">Treatment ID</th>
@@ -38,5 +38,8 @@
 
             </tbody>
         </table>
+        <blockquote class="blockquote text-center">
+            <a class="btn btn-outline-primary" href="{% url 'dashboard' patient.p_id %}" role="button">Go Back</a>
+        </blockquote>
     </div>
 {% endblock %}

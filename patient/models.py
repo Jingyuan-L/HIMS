@@ -96,7 +96,7 @@ class InsuranceProvider(models.Model):
 class Ins_Pat(models.Model):
     ins_p_id = models.ForeignKey('InsuranceProvider', models.DO_NOTHING,db_column='ins_p_id')
     p_id = models.ForeignKey('Patient', models.DO_NOTHING,db_column='p_id')
-    insurance_id = models.IntegerField(auto_created=True)
+    insurance_id = models.IntegerField(primary_key=True, auto_created=True)
     tbl_last_dt = models.DateTimeField(auto_now=True)
 
     class Meta:
