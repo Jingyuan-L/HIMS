@@ -7,5 +7,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/hims_oltp_db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="@hims-oltp-db.cpfsluvxtsqc.us-east-2.rds.amazonaws.com" uuid="99b676d4-8771-44e2-879e-6c94ddc5a50f">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://hims-oltp-db.cpfsluvxtsqc.us-east-2.rds.amazonaws.com:3306</jdbc-url>
+    </data-source>
   </component>
 </project>

@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import datetime
 from .models import Patient, PatAppointment, Treatment, Doctor, Hospital, Ins_Pat, InsuranceProvider, OutPatient, \
-                    Billing, Lab, LabResult, IcdTable, InPatient, NursHmPatient, Receipt
+    Billing, Lab, LabResult, IcdTable, InPatient, NursHmPatient, Receipt
 from .forms import patientform
 
 
@@ -80,7 +80,6 @@ def billing(request, pk):
     for treat in treatments:
         billings.extend(list(Billing.objects.filter(treat_id=treat.treat_id)))
 
-
     context = {
         'billings': billings,
         'patient': patient
@@ -109,7 +108,7 @@ def history(request, pk):
 @login_required(login_url='patient_login')
 def view_receipt(request, b_id):
     billing = Billing.objects.get(b_id=b_id)
-    receipt = Receipt.objects.get(b=billing)
+    receipt = Receipt.objects.filter(b=billing).first()
     treat = Treatment.objects.get(billing=billing)
     app = PatAppointment.objects.get(ap_id=treat.ap.ap_id)
     patient = Patient.objects.get(p_id=app.p_id.p_id)
@@ -129,7 +128,6 @@ def pay_bill(request, b_id):
     treat = Treatment.objects.get(billing=billing)
     app = PatAppointment.objects.get(ap_id=treat.ap.ap_id)
     patient = Patient.objects.get(p_id=app.p_id.p_id)
-
 
     if request.method == "POST":
         method = request.POST.get('pay_method')
@@ -185,7 +183,7 @@ def view_treatment(request, treat_id):
         'lab_results': lab_results,
         'appointment': appointment,
         'treatment': treatment,
-        'patient':patient
+        'patient': patient
     }
     return render(request, 'patient/view_treatment.html', context)
 
@@ -194,10 +192,13 @@ def view_treatment(request, treat_id):
 def view_labresult(request, test_id):
     lab_result = LabResult.objects.get(test_id=test_id)
     lab = Lab.objects.get(lab_id=lab_result.lab.lab_id)
+    treatment = Treatment.objects.get(treat_id=lab_result.treat_id)
+    patient = treatment.ap.p_id
 
     context = {
         'lab_results': lab_result,
-        'lab': lab
+        'lab': lab,
+        'patient': patient,
     }
     return render(request, 'patient/view_labresult.html', context)
 
@@ -223,13 +224,20 @@ def make_appointment(request, pk):
     else:
         try:
             have_ins = Ins_Pat.objects.filter(p_id=pk)
+            # to avoid new patient doesn't have ins_pat record
+            print(have_ins.first())
+            if have_ins.first() is None:
+                have_ins = InsuranceProvider.objects.filter()
+
             inslist = []
             for inp in have_ins:
-                inslist.append(inp.ins_p_id.ins_provider_name)
+                print(inp.ins_provider_name)
+                inslist.append(inp.ins_provider_name)
             hospitallist = Hospital.objects.all().values("hospital_name").distinct()
             context['hospitallist'] = hospitallist
             context['inslist'] = inslist
         except Exception:
+            raise Exception
             context['login_err'] = 'login_err'
             return render(request, "patient/make_appointment.html", context)
 

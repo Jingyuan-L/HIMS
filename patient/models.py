@@ -55,6 +55,9 @@ class Hospital(models.Model):
     class Meta:
         db_table = 'Hospital'
 
+    def __str__(self):
+        return self.hospital_name
+
 
 
 class IcdTable(models.Model):

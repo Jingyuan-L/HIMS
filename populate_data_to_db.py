@@ -12,6 +12,7 @@ db = MySQLdb.connect(host="localhost",
 cur = db.cursor()
 f = Faker()
 
+##########################################################################################
 # Step 1: independent table: hospital, insuranceprovider, lab
 
 for _ in range(20):

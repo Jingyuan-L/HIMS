@@ -35,7 +35,7 @@ def update_doc_account(request, pk):
     d_form = DoctorForm(instance=doctor)
 
     if request.method == 'POST':
-        d_form = (request.POST)
+        d_form = DoctorForm(request.POST)
         if d_form.is_valid():
             email_get = d_form.cleaned_data['e_mail']
             phone_get = d_form.cleaned_data['phone']
@@ -46,15 +46,15 @@ def update_doc_account(request, pk):
             streetaddress_get = d_form.cleaned_data['street_address']
             zipcode_get = d_form.cleaned_data['zip_code']
 
-            doctor = Doctor.objects.filter(p_id=pk)
-            doctor.update(p_id=pk, e_mail=email_get, phone=phone_get, state=state_get, city=city_get,
+            doctor = Doctor.objects.filter(doctor_id=pk)
+            doctor.update(doctor_id=pk, e_mail=email_get, phone=phone_get, state=state_get, city=city_get,
                            first_name=firstname_get, last_name=lastname_get,
                            street_address=streetaddress_get, zip_code=zipcode_get)
             # 触发时间更新
-            doctor = Doctor.objects.get(p_id=pk)
+            doctor = Doctor.objects.get(doctor_id=pk)
             # doctor.phone = phone_get
             doctor.save()
-            return redirect('update_patient_account', pk=pk)
+            return redirect('update_doc_account', pk=pk)
 
     context = {
         'd_form': d_form,
@@ -114,16 +114,23 @@ def patient_history(request, ap_id):
 
 @login_required(login_url='doctor_login')
 def doc_view_appointment(request, ap_id):
-    appointment = PatAppointment.objects.get(ap_id=ap_id)
-    doctor = appointment.doctor
-    treatment = Treatment.objects.filter(ap_id=ap_id)
+    doctor = None
+    appointment = None
+    treatment = None
     inpatient, outpatient, nursinghome = None, None, None
-    if appointment.type == 'inpatient':
-        inpatient = InPatient.objects.get(ap_id=ap_id)
-    elif appointment.type == 'outpatient':
-        outpatient = OutPatient.objects.get(ap_id=ap_id)
-    elif appointment.type == 'nursinghome':
-        nursinghome = NursHmPatient.objects.get(ap_id=ap_id)
+    try:
+        appointment = PatAppointment.objects.get(ap_id=ap_id)
+        doctor = appointment.doctor
+        treatment = Treatment.objects.filter(ap_id=ap_id)
+        if appointment.type == 'inpatient':
+            inpatient = InPatient.objects.get(ap_id=ap_id)
+        elif appointment.type == 'outpatient':
+            outpatient = OutPatient.objects.get(ap_id=ap_id)
+        elif appointment.type == 'nursinghome':
+            nursinghome = NursHmPatient.objects.get(ap_id=ap_id)
+    except Exception:
+        print(Exception)
+
     context = {
         'doctor': doctor,
         'appointment': appointment,

@@ -1,0 +1,40 @@
+{% extends 'account/index.html' %}
+
+{% block title %}regitser{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-6">
+                <div class="card" style="width: 32rem;">
+                  <div class="card-body">
+                    <h5 class="card-title text-center">register</h5>
+                  <hr class="my-4">
+                    <form action="{% url 'doc_register' %}" method="post">
+                        <div style="height: 50px"></div>
+                        {% csrf_token %}
+                        {{ r_form.as_p }}
+{#                        <select class="field" name="selhospital" id="hospitalname">#}
+{#                            <option value ="select">select</option>#}
+{#                            {% for hospital in hospitallist %}#}
+{#                                <option value = {{ hospital.hospital_id }}>"{{ hospital.hospital_name }} {{ hospital.hospital_name }}"</option>#}
+{#                            {% endfor %}#}
+{#                        </select>#}
+                        {% if message %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ message }}
+                        </div>
+                        {% endif %}
+                        <div style="height: 50px"></div>
+                        <button type="submit" class="btn btn-primary">register</button>
+                    </form>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+    </div>
+
+{% endblock %}
