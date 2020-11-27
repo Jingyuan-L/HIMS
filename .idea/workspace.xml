@@ -67,11 +67,13 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../NYU/course/DSP LAB" />
+    <property name="database.data.extractors.current.export.id" value="Comma-separated (CSV)_id" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HIMS-data-api" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -187,8 +189,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.populate_icd_code" />
         <item itemvalue="Python.populate_data_to_db" />
+        <item itemvalue="Python.populate_icd_code" />
       </list>
     </recent_temporary>
   </component>
@@ -225,6 +227,26 @@
       <workItem from="1603338909557" duration="1829000" />
       <workItem from="1603462999818" duration="4012000" />
       <workItem from="1603557819285" duration="22637000" />
+      <workItem from="1604091024642" duration="2489000" />
+      <workItem from="1604378342318" duration="1029000" />
+      <workItem from="1604671316167" duration="2166000" />
+      <workItem from="1604778913506" duration="38000" />
+      <workItem from="1604842441418" duration="3458000" />
+      <workItem from="1604852490330" duration="607000" />
+      <workItem from="1605476079134" duration="10065000" />
+      <workItem from="1605577490541" duration="5594000" />
+      <workItem from="1605744860167" duration="4655000" />
+      <workItem from="1605893072343" duration="14792000" />
+      <workItem from="1605975442664" duration="10193000" />
+      <workItem from="1606000763523" duration="84000" />
+      <workItem from="1606077991888" duration="597000" />
+      <workItem from="1606140634540" duration="7977000" />
+      <workItem from="1606172814794" duration="3062000" />
+      <workItem from="1606289209600" duration="1556000" />
+      <workItem from="1606339618826" duration="12743000" />
+      <workItem from="1606357924406" duration="1734000" />
+      <workItem from="1606449507926" duration="639000" />
+      <workItem from="1606493491336" duration="1282000" />
     </task>
     <task id="LOCAL-00001" summary="改了很多">
       <created>1602343822056</created>
@@ -276,10 +298,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="488" y="235" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1601391604887" />
-    <state x="167" y="41" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603133166503">
+    <state x="197" y="254" key="#SQL_Dialects" timestamp="1605486725953">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="167" y="41" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1603133166503" />
+    <state x="197" y="254" key="#SQL_Dialects/0.0.1536.824@0.0.1536.824" timestamp="1605486725953" />
+    <state x="167" y="41" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606341973601">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="167" y="41" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1606341973601" />
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.-3.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1602311343059" />
     <state x="2087" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.-3.1536.832/0.0.1920.1040@1920.-3.1536.832" timestamp="1602646794995" />
     <state x="2287" y="-3" key="CommitChangelistDialog2" timestamp="1602680977045">
@@ -287,27 +313,31 @@
     </state>
     <state x="367" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601391263636" />
     <state x="2287" y="-3" key="CommitChangelistDialog2/1920.-3.1536.832/0.0.1920.1040@1920.-3.1536.832" timestamp="1602680977045" />
-    <state x="592" y="217" key="FileChooserDialogImpl" timestamp="1603464447673">
+    <state x="592" y="217" key="FileChooserDialogImpl" timestamp="1606449555065">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="592" y="217" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603464447673" />
+    <state x="592" y="217" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1606449555065" />
     <state x="740" y="274" key="FileChooserDialogImpl/1920.-3.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1602311277749" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1603594911210">
+    <state width="1493" height="208" key="GridCell.Tab.0.bottom" timestamp="1606494390956">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603594911210" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1603594911210">
+    <state width="1493" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606494390955" />
+    <state width="1493" height="208" key="GridCell.Tab.0.center" timestamp="1606494390955">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603594911210" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1603594911210">
+    <state width="1493" height="208" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606494390955" />
+    <state width="1493" height="208" key="GridCell.Tab.0.left" timestamp="1606494390954">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603594911210" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1603594911210">
+    <state width="1493" height="208" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606494390954" />
+    <state width="1493" height="208" key="GridCell.Tab.0.right" timestamp="1606494390955">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603594911210" />
+    <state width="1493" height="208" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606494390955" />
+    <state width="209" height="457" key="HiddenNamespacesPopup" timestamp="1605926264412">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="209" height="457" key="HiddenNamespacesPopup/0.0.1536.824@0.0.1536.824" timestamp="1605926264412" />
     <state x="338" y="71" key="SettingsEditor" timestamp="1602301229044">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -319,17 +349,29 @@
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601391074996" />
     <state x="2281" y="143" key="Vcs.Push.Dialog.v2/1920.-3.1536.832/0.0.1920.1040@1920.-3.1536.832" timestamp="1602680994794" />
-    <state x="349" y="67" key="com.intellij.database.dbimport.ImportDialog" timestamp="1603335252238">
+    <state x="647" y="289" width="312" height="245" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1606342710574">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="349" y="67" key="com.intellij.database.dbimport.ImportDialog/0.0.1536.824@0.0.1536.824" timestamp="1603335252238" />
+    <state x="647" y="289" width="312" height="245" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1536.824@0.0.1536.824" timestamp="1606342710574" />
+    <state x="349" y="67" key="com.intellij.database.dbimport.ImportDialog" timestamp="1606359243157">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="349" y="67" key="com.intellij.database.dbimport.ImportDialog/0.0.1536.824@0.0.1536.824" timestamp="1606359243157" />
+    <state x="575" y="313" key="com.intellij.database.view.ui.DatabasePreviewDialog" timestamp="1605976818739">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="575" y="313" key="com.intellij.database.view.ui.DatabasePreviewDialog/0.0.1536.824@0.0.1536.824" timestamp="1605976818739" />
     <state x="574" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603155713851">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="574" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1603155713851" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1605746060724">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1605746060724" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/manage_py$populate_icd_code.coverage" NAME="populate_icd_code Coverage Results" MODIFIED="1603335298254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/manage_py$populate_data_to_db.coverage" NAME="populate_data_to_db Coverage Results" MODIFIED="1603231145832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/manage_py$populate_data_to_db.coverage" NAME="populate_data_to_db Coverage Results" MODIFIED="1606352184080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

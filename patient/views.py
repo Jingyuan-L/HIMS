@@ -213,7 +213,8 @@ def make_appointment(request, pk):
         seldoctor_get = request.POST.get('seldoctor')
         treat_time_get = request.POST.get('treated_time')
         insname_get = request.POST.get('ins')
-        doctor = Doctor.objects.get(first_name=seldoctor_get)
+        # modified here to avoid MultipleObjectsReturned
+        doctor = Doctor.objects.filter(first_name=seldoctor_get).first()
         inp = InsuranceProvider.objects.get(ins_provider_name=insname_get)
         new_ap = PatAppointment.objects.create(doctor=doctor, type='outpatient', status='processing',
                                                ins_p_id=inp, p_id=patient)
@@ -226,13 +227,19 @@ def make_appointment(request, pk):
             have_ins = Ins_Pat.objects.filter(p_id=pk)
             # to avoid new patient doesn't have ins_pat record
             print(have_ins.first())
+            inslist = []
             if have_ins.first() is None:
                 have_ins = InsuranceProvider.objects.filter()
 
-            inslist = []
-            for inp in have_ins:
-                print(inp.ins_provider_name)
-                inslist.append(inp.ins_provider_name)
+
+                for inp in have_ins:
+                    print(inp.ins_provider_name)
+                    inslist.append(inp.ins_provider_name)
+            else:
+                for inp in have_ins:
+                    print(inp.ins_p_id.ins_provider_name)
+                    inslist.append(inp.ins_p_id.ins_provider_name)
+
             hospitallist = Hospital.objects.all().values("hospital_name").distinct()
             context['hospitallist'] = hospitallist
             context['inslist'] = inslist
