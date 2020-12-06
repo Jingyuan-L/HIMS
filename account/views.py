@@ -110,16 +110,23 @@ def register(requset):
             pwd2_get = r_form.cleaned_data['password2']
             email_get = r_form.cleaned_data['email']
 
-            try:
-                if pwd1_get == pwd2_get:
-                    new_user = User.objects.create_user(username=username_get, password=pwd1_get, email=email_get)
-                    new_user.save()
-                    Patient.objects.create(user=new_user, e_mail=email_get)
-                    return redirect('patient_login')
-                else:
-                    message = 'different password'
-            except:
-                message = 'username or email has been occupied'
+            # try:
+            #     if pwd1_get == pwd2_get:
+            #         new_user = User.objects.create_user(username=username_get, password=pwd1_get, email=email_get)
+            #         new_user.save()
+            #         Patient.objects.create(user=new_user, e_mail=email_get)
+            #         return redirect('patient_login')
+            #     else:
+            #         message = 'different password'
+            # except:
+            #     message = 'username or email has been occupied'
+            if pwd1_get == pwd2_get:
+                new_user = User.objects.create_user(username=username_get, password=pwd1_get, email=email_get)
+                new_user.save()
+                Patient.objects.create(user=new_user, e_mail=email_get)
+                return redirect('patient_login')
+            else:
+                message = 'different password'
                 # new_user.delete()
 
     context = {

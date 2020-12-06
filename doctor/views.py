@@ -73,13 +73,15 @@ def cur_patient(request, pk):
     in_infos =[]
     for i in in_aps:
         in_infos.extend(list(InPatient.objects.filter(ap_id=i.ap_id)))
-        print(i)
+        print(i, "in-patient")
 
     nurs_aps = PatAppointment.objects.filter(doctor=pk, status='processing', type='nursinghome')
     nurs_infos = []
     for i in nurs_aps:
         nurs_infos.extend(list(NursHmPatient.objects.filter(ap_id=i.ap_id)))
-        print(i)
+        print(i, "nursing home")
+
+
 
     context = {
         'doctor': doctor,
