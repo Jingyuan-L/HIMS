@@ -100,7 +100,7 @@ def cur_patient(request, pk):
 def patient_history(request, ap_id):
     cur_appt = PatAppointment.objects.get(ap_id=ap_id)
     doctor = Doctor.objects.get(doctor_id=cur_appt.doctor.doctor_id)
-    appointments = PatAppointment.objects.filter(doctor_id=doctor.doctor_id)
+    appointments = PatAppointment.objects.filter(p_id=cur_appt.p_id.p_id)
     treatments = []
     for ap in appointments:
         treatments.extend(list(Treatment.objects.filter(ap_id=ap.ap_id)))
